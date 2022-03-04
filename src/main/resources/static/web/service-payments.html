@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style-home.css">
+    <link rel="stylesheet" href="css/style-accounts.css">
+    <link rel="stylesheet" href="css/style-transactions.css">
+    <link rel="stylesheet" href="css/payments.css">
+
+
+</head>
+
+<body>
+
+    <div class="loader" id="onload">
+        <div class="lds-ripple">
+            <div></div>
+            <div></div>
+        </div>
+        <h4 style="color: white;">Mindhub Brothers</h4>
+    </div>
+    <div id="app">
+        <div class="contenedor-total">
+            <header class="cabecera-cuentas">
+                <div class="cabecera">
+                    <div class="logo-continental">
+                        <img src="img/circulo.png" alt="logo_continental">
+                        <h1>Mindhub</h1>
+                    </div>
+                    <a href="#">Mis Gestiones</a>
+                    <a href="#">Atención al cliente</a>
+                    <button class="bton-signout" type="button" v-on:click="signout">Salir
+                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                <path d="M7 12h14l-3 -3m0 6l3 -3" />
+              </svg> 
+            </button>
+
+                </div>
+                <nav class="nav-cuentas">
+                    <a href="accounts.html">Cuentas</a>
+                    <a href="cards.html">Tarjetas</a>
+                    <a href="loan-application.html">Prestamos</a>
+                </nav>
+            </header>
+
+            <main>
+                <div id="app" class="contenedor-pagos">
+                    <div class="contenedor-servicios">
+                        <h1 style="color:black">Pago de servicios</h1>
+                        <p>Una vez que realices un nuevo pago o agregues un servicio, te avisaremos los próximos vencimientos.</p>
+
+                        <div class="contenedor-empresas">
+                            <div class="card-servicio" v-for="service in services">
+                                <button type="button" @click="paymentElection(service.name)">
+                                <div class="c-img">
+                                    <div v-show="service.name=='EDESUR'">
+                                        <img src="/web/img/edenor.png">
+                                    </div>
+                                    <div v-show="service.name=='AYSA'" >
+                                        <img src="/web/img/aysa-png.png" style="width: 60%;"    >
+                                    </div>
+                                    <div v-show="service.name=='METROGAS'">
+                                        <img src="/web/img/metrogas.png">
+                                    </div>
+
+                                <!-- <p style="margin: 0;">{{service.name}} </p> -->
+                            </button>
+                            </div>
+
+                            <div class="mas">
+                                <button type="button" @click="addService"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-circle-plus" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                    <circle cx="12" cy="12" r="9" />
+                                    <line x1="9" y1="12" x2="15" y2="12" />
+                                    <line x1="12" y1="9" x2="12" y2="15" />
+                                  </svg>
+                                <p style="margin: 0;">Nuevo</p>
+                                </button>
+                            </div>
+
+                        </div>
+
+                        <div class="contenedor-pago" v-show="formPago==true">
+                            <div style="display: flex;align-items: center;">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-receipt" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M5 21v-16a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v16l-3 -2l-2 2l-2 -2l-2 2l-2 -2l-3 2m4 -14h6m-6 4h6m-2 4h2" />
+                              </svg>
+                                <input type="text" v-show="newService" v-model="payment.description" placeholder="Nuevo servicio">
+                                <p style="margin: 0;" v-show="newService==false">{{payment.description}} </p>
+                            </div>
+                            <div class="dato-pago">
+                                <div style="align-items: center;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-search" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                    <circle cx="12" cy="7" r="4" />
+                                    <path d="M6 21v-2a4 4 0 0 1 4 -4h1" />
+                                    <circle cx="16.5" cy="17.5" r="2.5" />
+                                    <path d="M18.5 19.5l2.5 2.5" />
+                                  </svg>
+                                    <input type="number" id="cliente" placeholder="N° Cliente" v-model="numberC">
+                                </div>
+                                <div style="margin-left: 1rem;align-items: center;">
+                                    <svg xmlns="http://www.w3.org/2000/svg " class="icon icon-tabler icon-tabler-coin " width="30 " height="30 " viewBox="0 0 24 24 " stroke-width="1.5 " stroke="#2c3e50 " fill="none " stroke-linecap="round
+                                 " stroke-linejoin="round ">
+                                <path stroke="none " d="M0 0h24v24H0z " fill="none "/>
+                                <circle cx="12 " cy="12 " r="9 " />
+                                <path d="M14.8 9a2 2 0 0 0 -1.8 -1h-2a2 2 0 0 0 0 4h2a2 2 0 0 1 0 4h-2a2 2 0 0 1 -1.8 -1 " />
+                                <path d="M12 6v2m0 8v2 " />
+                                 </svg>
+                                    <input id="amount" v-model="payment.amount" type="number" placeholder="Monto" />
+                                </div>
+                            </div>
+
+                            <!--  -->
+                            <div class="contenedor-pago-tarjeta" v-show="payment.amount>0&&numberC>9999">
+                                <p style="margin-bottom: 0.3rem;">Tarjeta</p>
+                                <div class="contenedor-form-pago">
+                                    <div>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-credit-card" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                    <rect x="3" y="5" width="18" height="14" rx="3" />
+                                    <line x1="3" y1="10" x2="21" y2="10" />
+                                    <line x1="7" y1="15" x2="7.01" y2="15" />
+                                    <line x1="11" y1="15" x2="13" y2="15" />
+                                  </svg>
+                                        <select id="card " v-model="payment.cardNumber ">
+                                <option v-for="card in cards" v-if="card.activate==true" :value="card.number " >{{card.number}}</option>
+                                </select>
+                                    </div>
+                                    <div>
+                                        <label for="cvv ">CVV</label>
+                                        <input style="margin-left: 0.5rem;width: 4rem;" id="cvv " v-model="payment.cvv " type="password " />
+                                        <div style="margin-left: 3rem; width: 4rem;">
+                                            <button type="button " id="button-pay" :disabled="payment.cardNumber==0||payment.cvv<99" :class="{'pay-disabled': payment.cardNumber==0||payment.cvv<99  ,'button-pay': payment.cardNumber!=0&&payment.cvv>99 } " @click="requestPay">Pagar</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <!-- <p>{{payment}} </p> -->
+                    </div>
+                    <div class="contenedor-operaciones ">
+                        <p style="font-weight: bold; color: #072146; "> <svg style="margin-right:1rem ; " xmlns="http://www.w3.org/2000/svg " class="icon icon-tabler icon-tabler-user " width="30 " height="30 " viewBox="0 0 24 24 " stroke-width="1.5
+                            " stroke="#072146 " fill="none " stroke-linecap="round " stroke-linejoin="round ">
+                    <path stroke="none " d="M0 0h24v24H0z " fill="none "/>
+                    <circle cx="12 " cy="7 " r="4 " />
+                    <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2 " />
+                        </svg> {{cliente}} </p>
+                        <p>Pagos </p>
+                        <a href="#/ ">Resumenes de Tarjeta</a>
+                        <a href="#/ ">Operaciones</a>
+                        <a href="#/ ">Baja</a>
+                        <a href="#/ ">Comparar comisiones</a>
+                    </div>
+                </div>
+            </main>
+
+            <footer>
+                <div class="logo-copyright ">
+                    <img src="img/circulo.png " alt="BCABA " width="70% ">
+                    <p>Copyright ® 2022.</p>
+                </div>
+
+                <div class="logos ">
+                    <a href="http://www.facebook.com " target="blank_ "> <img class="logo-redes " src="img/facebook.png " alt="Facebook "></a>
+                    <a href="http://www.instagram.com " target="blank_ "><img class="logo-redes " src="img/instagram.png " alt="Instagram "></a>
+                    <a href="http://www.twitter.com " target="blank_ "><img class="logo-redes " src="img/twitter.png " alt="twitter "></a>
+                </div>
+            </footer>
+        </div>
+        <template>
+            <transition name="fade">
+                <section class="modal" v-show="modalError==true">
+                    <div class="contenedor-modal">
+                        <h4>Su solicitud no pudo ser procesada</h4>
+                        <p>{{messageError}} </p>
+                        <button type="button" @click="close" >Volver</button>
+                    </div>
+                </section>
+            </transition>
+        </template>
+
+        <template>
+            <transition name="fade">
+                <section class="modal" v-show="cargando==true" >
+                    <div class="contenedor-modal" >
+                        <h2>cargando</h2>
+                    </div>
+                </section>
+            </transition>
+        </template>
+
+
+        <template>
+            <transition name="fade">
+                <section class="modal" v-show="modalPago==true">           
+                    <div class="contenedor-modal modal-pago">
+                        <h4>-{{payment.description}}-</h4>
+                        <p>Cliente: {{numberC}}</p>
+                        <p>Monto: ${{payment.amount}} </p>
+                        <div  style=" width: 4rem; display: flex;">
+                            <button type="button" id="button-pay"  @click="pay " style="margin-right: 2rem;">Pagar</button>
+                                <button type="button" @click="close" >Volver</button>
+                        </div>
+                    </div>
+                </section>
+            </transition>
+        </template>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js "></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js "></script>
+    <script src="script/payments.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js " integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p " crossorigin="anonymous "></script>
+
+</body>
+
+</html>

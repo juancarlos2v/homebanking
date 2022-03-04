@@ -1,0 +1,191 @@
+.main-cards {
+    background-color: rgb(221, 226, 230);
+    padding: 2rem 7rem;
+}
+
+.body-tarjetas {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 3rem;
+}
+
+.contenedor-tarjetas {
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.contenedor-card-tarjeta {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 17rem;
+    margin-bottom: 3rem;
+    align-items: center;
+    /* background-color: rgb(232, 232, 233); */
+    /* border: 0.1rem solid rgba(168, 168, 168, 0.164); */
+    /* box-shadow: 2px 2px 50px 2px rgba(0, 0, 0, 0.2); */
+}
+
+.tarjeta-datos {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+/*  width: 15rem;
+    height: 9rem;*/
+
+#card-tarjeta {
+    width: 15rem;
+    height: 9rem;
+    border-radius: 13px;
+    border: 0.1rem solid rgba(0, 0, 0, 0.164);
+    box-shadow: -1px 12px 8px 0px rgb(0 0 0 / 40%);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    padding-top: 1rem;
+}
+
+.logo-tarjeta {
+    display: flex;
+    width: 100%;
+}
+
+#card-tarjeta p {
+    font-family: monospace;
+}
+
+#card-tarjeta img {
+    width: 25%;
+}
+
+.div-number p {
+    padding-top: 0.5rem;
+    margin: 0;
+}
+
+.holder {
+    margin: 0;
+}
+
+.div-datos {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.div-datos p {
+    margin: 0;
+}
+
+.datos-tarjeta-cliente {
+    display: flex;
+    flex-direction: column;
+}
+
+.datos-tarjeta-cliente>div {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.datos-tarjeta-cliente p {
+    margin: 0;
+}
+
+
+/* .datos-tarjeta-cliente>div p {
+    margin-right: 1rem;
+} */
+
+.enlaces-tarjeta {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    border-bottom: 0.1rem solid rgba(0, 0, 0, 0.192);
+    border-top: 0.1rem solid rgba(0, 0, 0, 0.192);
+}
+
+.enlaces-tarjeta a,
+button {
+    color: #1871b9;
+    font-weight: bold;
+    background: transparent;
+}
+
+.enlaces-tarjeta a:hover {
+    color: #072146;
+}
+
+.background-gold {
+    background-image: url(/web/img/card-gold.png);
+}
+
+.background-silver {
+    background-image: url(/web/img/card-silver.png);
+}
+
+.background-titanium {
+    background-image: url(/web/img/card-titanium.jpg);
+}
+
+.texto-blanco {
+    color: white;
+}
+
+.contenedor-operaciones {
+    margin-top: 0;
+}
+
+.enlace-crear {
+    margin-top: 1rem;
+    margin-left: 1rem;
+    display: flex;
+}
+
+@media screen and (max-width:800px) {
+    .main-cards {
+        padding: 2rem 2rem;
+    }
+    .body-tarjetas {
+        padding: 0;
+    }
+    .contenedor-card-tarjeta {
+        height: auto;
+    }
+    .contenedor-tarjetas {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        padding: 1rem;
+    }
+    .tarjeta-datos {
+        display: flex;
+        flex-direction: column;
+    }
+    .datos-tarjeta-cliente {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .enlaces-tarjeta {
+        display: flex;
+        justify-content: space-between;
+    }
+    .enlaces-tarjeta a {
+        margin: 0;
+    }
+    .enlace-crear {
+        justify-content: center;
+        margin: 0;
+    }
+}

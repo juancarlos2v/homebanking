@@ -1,0 +1,32 @@
+/* #app {
+    display: flex;
+    justify-content: space-around;
+} */
+
+
+/* body */
+
+.tabla-clientes {
+    padding-top: 1rem;
+}
+
+table {
+    padding-left: 10rem;
+}
+
+td {
+    border-bottom: solid;
+}
+
+td>a {
+    color: black;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+/*ANIMACIONES*/

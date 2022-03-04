@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Homebanking</title>
+</head>
+
+<body>
+    <main>
+        <div id="app">
+            <div>
+                <div class="formulario">
+                    <form>
+                        <h2>Client Manager</h2>
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Name:</label>
+                            <input type="text" id="name" class="form-control" v-model="form.firstName">
+                        </div>
+                        <div class="mb-3">
+                            <label for="last-name" class="form-label">Last Name:</label>
+                            <input type="text" id="last-name" class="form-control" v-model="form.lastName">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email address:</label>
+                            <input type="text" id="email" class="form-control" v-model="form.email">
+                        </div>
+                        <button type='submit' class="btn btn-primary" @click="loadData()">Add Client</button>
+                    </form>
+                </div>
+
+
+                <div class="tabla-clientes">
+                    <h2>Client List</h2>
+                    <table class="table">
+                        <thead>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                        </thead>
+                        <tbody>
+                            <tr v-for="clientes in clientes">
+                                <td> {{clientes.firstName}}</td>
+                                <td>{{clientes.lastName}}</td>
+                                <td>{{clientes.email}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div>
+                <h2>Client Rest Response</h2>
+                <pre>{{json}}</pre>
+            </div>
+        </div>
+    </main>
+
+    <footer>Homebanking | 2022</footer>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script src="manager.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+
+</html>

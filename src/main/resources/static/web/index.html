@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style-home.css">
+    <link rel="stylesheet" href="css/style-accounts.css">
+    <title>Continental</title>
+</head>
+
+<body>
+    <div class="loader" id="onload">
+        <div class="lds-ripple">
+            <div></div>
+            <div></div>
+        </div>
+        <h4 style="color: white;">Mindhub Brothers</h4>
+    </div>
+    <div id="app">
+        <header>
+            <div class="cabecera-index">
+                <div class="logo-continental">
+                    <img src="img/circulo.png" alt="logo_continental">
+                    <h1>Mindhub</h1>
+                </div>
+                <nav class="nav-home">
+                    <a href="#/">Solicita tu tarjeta</a>
+
+                    <a href="/web/register.html">Nuevo cliente</a>
+
+                    <button id="btton-banca" type="button" v-on:click="showForm">Banca Online<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-down" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <polyline points="6 9 12 15 18 9" />
+                          </svg> 
+                     </button>
+
+                </nav>
+            </div>
+        </header>
+        <main>
+            <template>
+            <div v-show="formEstado== true" class="trans">
+                <form class="formulario-ingreso" style=" background-color: white;">
+                    <h3>Bienvenido</h3>
+                    <label for="user">Usuario</label>
+                    <input type="mail" class="form-control" id="user" v-model="form.user">
+                    <label for="password">Clave digital</label>
+                    <input type="password" class="form-control" id="password" v-model="form.pass">
+                    <button class="bton-login" type="button" v-on:click="login"> Ingresar</button>
+                    <p v-show="error==true" style="color:red">Usuario y/o contraseña incorrecta.</p>
+                    <a href="#">Olvide o bloqueé mi Usuario/ Clave Digital</a>
+                    <a href="#">Recomendaciones de seguridad</a>
+                </form>
+            </div>
+        </template>
+            <section>
+                <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="img/banner-1.jpg" class="d-block w-100" alt="Oficinas">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="img/banner-2.jpg" class="d-block w-100" alt="Emprendedora">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="img/banner-3.jpg" class="d-block w-100" alt="Nuevos protocolos">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+                </div>
+            </section>
+            <div class="contenedor-opciones">
+                <div>
+                    <a href="#/">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chart-infographic" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#072146" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <circle cx="7" cy="7" r="4" />
+                        <path d="M7 3v4h4" />
+                        <line x1="9" y1="17" x2="9" y2="21" />
+                        <line x1="17" y1="14" x2="17" y2="21" />
+                        <line x1="13" y1="13" x2="13" y2="21" />
+                        <line x1="21" y1="12" x2="21" y2="21" />
+                      </svg>
+                        <p>Quiero invertir</p>
+                    </a>
+                </div>
+                <div>
+                    <a href="#/">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#072146" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <polyline points="5 12 3 12 12 3 21 12 19 12" />
+                        <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+                        <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+                      </svg>
+                        <p>Creditos hipotecarios</p>
+                    </a>
+                </div>
+                <div>
+                    <a href="#/">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-coin" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#072146" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <circle cx="12" cy="12" r="9" />
+                        <path d="M14.8 9a2 2 0 0 0 -1.8 -1h-2a2 2 0 0 0 0 4h2a2 2 0 0 1 0 4h-2a2 2 0 0 1 -1.8 -1" />
+                        <path d="M12 6v2m0 8v2" />
+                      </svg>
+                        <p>Productos para mi comercio</p>
+                    </a>
+                </div>
+                <div>
+                    <a href="#/">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-wallet" width="40" height="40" viewBox="0 0 24 24" stroke-width="1.5" stroke="#072146" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M17 8v-3a1 1 0 0 0 -1 -1h-10a2 2 0 0 0 0 4h12a1 1 0 0 1 1 1v3m0 4v3a1 1 0 0 1 -1 1h-12a2 2 0 0 1 -2 -2v-12" />
+                        <path d="M20 12v4h-4a2 2 0 0 1 0 -4h4" />
+                      </svg>
+                        <p>Necesito un prestamo</p>
+                    </a>
+                </div>
+            </div>
+            <section class="servicios">
+                <div class="serv">
+                    <div class="info-index">
+                        <h4>Turno online</h4>
+                        <!-- <p>Solicitalo simple y rapido.</p> -->
+                        <a href="/#">> Reservar turno </a>
+                    </div>
+                    <div class="img-serv">
+                        <div class="p-servicios"></div>
+                        <img src="/web/img/operacion.jpg" alt="Turnos online">
+                    </div>
+                </div>
+                <div class="serv">
+                    <div class="info-index">
+                        <h4>Asegurate</h4>
+                        <!-- <p>Aprovecha hasta 50% de descuento en Seguros.</p> -->
+                        <a href="#/">> Conocé mas</a>
+                    </div>
+                    <div class="img-serv">
+                        <img src="/web/img/seguro.jpg" alt="Asegura a tu tranquilidad">
+                    </div>
+
+
+                </div>
+                <div class="serv">
+                    <div class="info-index">
+                        <h4>Nuestra APP</h4>
+                        <!-- <p>Operá y consultá todos tus productos desde tu celular.</p> -->
+                        <a href="#/">> Descargar ahora</a>
+                    </div>
+                    <div class="img-serv">
+                        <img src="/web/img/app.jpg" alt="Descargala ya">
+                    </div>
+                </div>
+                <div class="serv">
+                    <div class="info-index">
+                        <h4>Promociones</h4>
+                        <!-- <p>Aprovecha hasta 50% de descuento en Seguros.</p> -->
+                        <a href="#/">> Ver beneficios</a>
+                    </div>
+                    <div class="img-serv">
+                        <img src="/web/img/promo.jpg" alt="Asegura a tu tranquilidad">
+                    </div>
+
+
+                </div>
+                <div class="serv">
+                    <div class="info-index">
+                        <h4>Sucursales</h4>
+                        <!-- <p>Operá y consultá todos tus productos desde tu celular.</p> -->
+                        <a href="#/">> Buscador</a>
+                    </div>
+                    <div class="img-serv">
+                        <img src="/web/img/sucursal.jpg" alt="Descargala ya">
+                    </div>
+                </div>
+            </section>
+
+        </main>
+        <div class="aviso">
+            <h3>Aviso legal</h3>
+            <p>Precios y comisiones: Mantenimiento mensual de caja de ahorro en pesos: sin cargo / Transacciones por ventanilla: sin cargo / Mantenimiento mensual de cuenta corriente bancaria en pesos PF individuos: $ 1.294,70 / Transacciones en cajeros
+                automáticos de la red Banelco: $ 94,38 / Transacciones en cajeros automáticos de otras redes: $ 112,53 / Comisión de renovación anual de la Tarjeta de Crédito Visa Internacional para la cartera general: $ 6.154,06 / Comisión renovación
+                anual de la Tarjeta de Crédito Mastercard Internacional para la cartera general: $ 6154,06 / Comisión de mantenimiento de la cuenta de la tarjeta de crédito: $ 343,64. Los valores informados incluyen IVA. </p>
+            <a href="#/">> Más comisiones</a><br>
+            <a href="http://www.bcra.gob.ar/BCRAyVos/Comparacion_de_Comisiones.asp" target="_blank">> Comparativo de comisiones Com."A" 5928 BCRA</a>
+        </div>
+        <footer>
+            <div class="logo-copyright">
+                <img src="img/circulo.png" alt="BCABA" width="70%">
+                <p>Copyright ® 2022.</p>
+            </div>
+
+            <div class="logos">
+
+                <!-- <p style="color: white;">Nuestras redes</p> -->
+
+                <a href="http://www.facebook.com" target="blank_"> <img class="logo-redes" src="img/facebook.png" alt="Facebook"></a>
+                <a href="http://www.instagram.com" target="blank_"><img class="logo-redes" src="img/instagram.png" alt="Instagram"></a>
+                <a href="http://www.twitter.com" target="blank_"><img class="logo-redes" src="img/twitter.png" alt="twitter"></a>
+            </div>
+        </footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="script/home.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+
+</html>

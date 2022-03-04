@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style-home.css">
+    <link rel="stylesheet" href="css/style-accounts.css">
+    <link rel="stylesheet" href="css/style-loans.css">
+
+
+</head>
+
+<body>
+
+    <div class="loader" id="onload">
+        <div class="lds-ripple">
+            <div></div>
+            <div></div>
+        </div>
+        <h4 style="color: white;">Mindhub</h4>
+    </div>
+    <div id="app">
+        <div class="contenedor-total">
+            <header class="cabecera-cuentas">
+                <div class="cabecera">
+                    <div class="logo-continental">
+                        <img src="img/circulo.png" alt="logo_continental">
+                        <h1>Mindhub</h1>
+                    </div>
+                    <div class="enlaces-header">
+                        <a href="#">Mis Gestiones</a>
+                        <a href="#">Atención al cliente</a>
+                        <button class="bton-signout" type="button" v-on:click="signout">Salir
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                        <path d="M7 12h14l-3 -3m0 6l3 -3" />
+                    </svg>  
+                        </button>
+                    </div>
+
+                </div>
+                <nav class="nav-cuentas">
+                    <a href="accounts.html">Cuentas</a>
+                    <a href="cards.html">Tarjetas</a>
+                    <p style="margin:0">Prestamos</p>
+                </nav>
+            </header>
+
+            <main class="loan">
+                <div class="banner-prestamo">
+
+                    <h1 class="titulo-prestamo">¡Sacá hoy tu Préstamo Online!</h1>
+                    <div class="contenedor-img ">
+                        <img src="/web/img/banner-prestamo.webp ">
+                    </div>
+                </div>
+                <div>
+                    <nav class="nav-loan ">
+                        <button type="button " @click="all() "> Todos</button>
+                        <button v-for="prestamo in prestamos " @click="election(prestamo.id) "> <span class="pres">Prestamo</span>  {{prestamo.name}} </button>
+                    </nav>
+                    <div class="contenedor-loans ">
+                        <h1 v-show="showAll==true " style="text-align:center;margin-top: 2rem;color:black ">Prestamos</h1>
+                        <transition name="fade">
+                            <template>
+                        <div class="contenedor-prestamos " v-show="showAll==true ">
+                            <div class=" card-prestamo " v-for="prestamo in prestamos ">
+                                    <button type="button " @click="election(prestamo.id) " class="btton-card ">
+                                <div class="img-prestamos " v-show="prestamo.name=='Hipotecario' ">
+                                    <img src="/web/img/hipotecario.jpg " >
+                                </div>
+                                <div class="img-prestamos " v-show="prestamo.name=='Personal' ">
+                                    <img src="/web/img/persona.jpg " >
+                                </div>
+                                <div class="img-prestamos " v-show="prestamo.name=='Automotriz' ">
+                                    <img src="/web/img/automotriz.jpg " >
+                                </div>
+                                <div class="info-prestamo ">
+                                    <h5 style="text-align: center;margin-bottom: 0.7rem; ">{{prestamo.name}}</h5>
+                                    <p> Pagos de <span v-for="cuota in prestamo.payments ">{{cuota}}, </span> cuotas</p>
+                                    <p> Monto hasta ${{prestamo.maxAmount}} </p>
+                                </div>
+                                </button>
+                            </div>
+                        </div>
+                    </template>
+                        </transition>
+                        <template>
+                    <transition name="fade">
+                        <div class="contenedor-form-img " v-show="form==true ">
+                            <div class="contenedor-form ">
+                              
+                                    <h2>Prestamo {{loan.name}} </h2>
+                              
+                               
+                                    <p v-show="loan.name=='Hipotecario' ">Comprá, construir o refacciona tu vivienda. Solicita tu prestamo ahora.</p>
+                               
+                                
+                                    <p v-show="loan.name=='Automotriz' ">Financiá la compra de tu próximo vehículo. Comprate el auto que siempre soñaste, prestamos de acreditacion inmediata. La velocidad en el otorgamiento es vital, por eso te ofrecemos préstamos personales de acreditación
+                                        inmediata
+                                    </p>
+                             
+                                    <p v-show="loan.name=='Personal' ">Encontrá tu mejor opción para adquirir un prestamo personal para vos. En pocos pasos descubrí las difrentes opciones y elegí la más adecuada. Fácil. Accesible.</p>                     
+
+                                <form>
+                                    <div>
+                                        <label for="amount ">Monto</label>
+                                        <input v-model="monto " type="number " v-bind:placeholder=" 'Hasta $'+loan.maxAmount " />
+                                    </div>
+
+                                    <div>
+                                        <label for=" payment ">Cuotas</label>
+                                        <select id="payment " v-model="payments ">
+                                <option v-for="cuota in loan.payments " :value="cuota">{{cuota}} cuotas </option>
+                                </select>
+                                    </div>
+
+                                    <div>
+                                        <label for="account ">Cuenta</label>
+                                        <select id="account " v-model="numero ">
+                                <option v-for="cuenta in cuentas " :value="cuenta.number ">{{cuenta.number}} </option>
+                                </select>
+                                    </div>
+                                </form>
+                                <p v-show="errorRequest==true " style="margin: 0; color: rgb(180, 34, 34); ">Todos los campos son obligatorios</p>
+                                <button type="button " class="btton-prestamos " @click="request() ">Solicitar prestamo</button>
+                            </div>
+
+                            <div class="hipo-png " v-show="loan.id==1 ">
+                                <img src="/web/img/hipo-png.png ">
+                            </div>
+                            <div class="personal-png " v-show="loan.id==2 ">
+                                <img src="/web/img/personal.jpg ">
+                            </div>
+                            <div class="autom-png " v-show="loan.id==3 ">
+                                <img src="/web/img/autom-png.png ">
+                            </div>
+                        </div>
+                    </transition>
+                </template>
+                    </div>
+                </div>
+            </main>
+
+
+            <section>
+                <div class="contenedor-faq">
+                    <h2>Preguntas Frecuentes</h2>
+                    <h5>¿Cuándo se acredita el préstamo en mi cuenta?</h5>
+                    <p>Vas a tener disponible el dinero en tu cuenta dentro de las 48 a 72 hs hábiles, desde el momento en que lo solicitás.</p>
+                    <h5>¿Qué pasa si dentro de los 10 días hábiles me arrepiento de haber contratado el préstamo?</h5>
+                    <p>Si solicitaste tu préstamo de manera online, podrás cancelar la misma dentro de los 10 días hábiles, contados desde la fecha de acreditación del dinero, ingresando a Botón de arrepentimiento</p>
+                    <h5>¿Cuáles son los requisitos para acceder a un préstamo?</h5>
+                    <p>La tasa efectiva anual se calcula a partir de la tasa nominal anual, siempre que no existan otros costos adicionales. Es el interés que efectivamente se aplicará a la operación o producto, indicando el costo o rendimiento efectivo
+                        de los mismos. La capitalización del interés en determinado número de veces por año da lugar a una tasa efectiva mayor a la nominal. La TEA y la TNA informadas para un mismo préstamo, son valores equivalentes.</p>
+
+                </div>
+            </section>
+            <footer>
+                <div class="logo-copyright ">
+                    <img src="img/circulo.png " alt="BCABA " width="70% ">
+                    <p>Copyright ® 2022.</p>
+                </div>
+
+                <div class="logos ">
+                    <a href="http://www.facebook.com " target="blank_ "> <img class="logo-redes " src="img/facebook.png " alt="Facebook "></a>
+                    <a href="http://www.instagram.com " target="blank_ "><img class="logo-redes " src="img/instagram.png " alt="Instagram "></a>
+                    <a href="http://www.twitter.com " target="blank_ "><img class="logo-redes " src="img/twitter.png " alt="twitter "></a>
+                </div>
+            </footer>
+        </div>
+        <template>        
+            <transition name="fade">
+                <section class="modal " v-show="mod==true ">
+                    <div class="contenedor-modal ">
+                        <h4>Confirmacion de prestamo</h4>
+                        <p>Solicito un prestamo {{loan.name}} de ${{monto}} en {{payments}} cuotas. La tasa Efectiva Anual (TEA) es del {{loan.rate}} %, la cuota final es de ${{cuota}}</p>
+                        <button type="button" class="btton-prestamos" @click="loanSubmit() ">Confirmar Prestamo</button>
+                        <button type="button" class="btton-prestamos" @click="close() ">Volver</button>
+                    </div>
+                </section>
+        
+             </transition>
+        </template>
+        <template>
+            <transition name="fade">
+                <section class="modal " v-show="modError==true ">
+                    <div class="contenedor-modal ">
+                        <h2>Su solicitud no pudo ser procesada</h2>
+                        <h5> Motivo: {{messageError}} </h5>
+                        <button type="button " class="btton-prestamos " @click="close() ">Volver</button>
+                    </div>
+                </section>
+            </transition>
+        </template>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js "></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js "></script>
+    <script src="script/loan-application.js "></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js " integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p " crossorigin="anonymous "></script>
+
+</body>
+
+</html>
+
+<!-- <div id="png " :class="{ 'png-hipoteca':loan.name=='Hipotecario' , 'png-personal':loan.name=='Personal' , 'png-auto':loan.name=='Automotriz' } "></div> -->

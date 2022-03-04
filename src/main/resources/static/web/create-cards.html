@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style-home.css">
+    <link rel="stylesheet" href="css/style-accounts.css">
+    <!-- <link rel="stylesheet" href="css/style-cards.css"> -->
+    <link rel="stylesheet" href="css/style-create-cards.css">
+    <title>Crear cuenta</title>
+</head>
+
+<body>
+    <div class="loader" id="onload">
+        <div class="lds-ripple">
+            <div></div>
+            <div></div>
+        </div>
+        <h4 style="color: white;">Mindhub</h4>
+    </div>
+    <div id="app">
+        <div class="contenedor-total">
+            <header class="cabecera-cuentas">
+                <div class="cabecera">
+                    <div class="logo-continental">
+                        <img src="img/circulo.png" alt="logo_continental">
+                        <h1>Mindhub</h1>
+                    </div>
+                    <a href="#">Mis Gestiones</a>
+                    <a href="#">Atención al cliente</a>
+                    <button class="bton-signout" type="button" v-on:click="signout">Salir
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                <path d="M7 12h14l-3 -3m0 6l3 -3" />
+              </svg></a>
+            </button>
+
+                </div>
+                <nav class="nav-cuentas">
+                    <a href="accounts.html">Cuentas</a>
+                    <a href="cards.html">Tarjetas</a>
+                    <a href="loan-application.html">Prestamos</a>
+                </nav>
+            </header>
+            <main>
+                <div class="contenedor-registro-card">
+                    <div class="contenedor-form">
+                        <div>
+                            <h4>Nueva Tarjeta</h4>
+                            <p> Solicitá tu Tarjeta de Crédito o Debito Mindhub 100% online y disfrutá de tus beneficios. Recibila sin salir de tu casa. Club Hubber Programa de Puntos.</p>
+                            <form>
+                                <div class="contenedor-input">
+                                    <div>
+                                        <button type="button" @click="requestDebit" class="debit">Debito</button>
+                                        <button class="credit" type="button" @click="requestCredit">Credito</button>
+                                    </div>
+
+                                    <div v-show="form.type=='CREDIT' ||form.type=='DEBIT'">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-credit-card" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                            <rect x="3" y="5" width="18" height="14" rx="3" />
+                                            <line x1="3" y1="10" x2="21" y2="10" />
+                                            <line x1="7" y1="15" x2="7.01" y2="15" />
+                                            <line x1="11" y1="15" x2="13" y2="15" />
+                                          </svg>
+                                        <select v-model="form.color">
+                                        <option disabled selected>Tipo</option>
+                                        <option>GOLD</option>
+                                        <option>SILVER</option>
+                                        <option >TITANIUM</option>
+                                        </select>
+                                    </div>
+
+                                </div>
+                                <button :disabled="form.type==''||form.color=='' " :class="{'button-create-card':form.type!=''&&form.color!='','button-create-disabled ':form.type==''||form.color==''}" type="button" v-on:click="newCard">Crear tarjeta</button>
+                            </form>
+                        </div>
+                        <!-- <p>{{form}} </p> -->
+                    </div>
+                    <div class="contenedor-img-form">
+                        <img src="/web/img/nueva-tarjeta.png">
+                    </div>
+                </div>
+
+            </main>
+            <footer>
+                <div class="logo-copyright">
+                    <img src="img/circulo.png" alt="BCABA" width="70%">
+                    <p>Copyright ® 2022.</p>
+                </div>
+
+                <div class="logos">
+
+                    <!-- <p style="color: white;">Nuestras redes</p> -->
+
+                    <a href="http://www.facebook.com" target="blank_"> <img class="logo-redes" src="img/facebook.png" alt="Facebook"></a>
+                    <a href="http://www.instagram.com" target="blank_"><img class="logo-redes" src="img/instagram.png" alt="Instagram"></a>
+                    <a href="http://www.twitter.com" target="blank_"><img class="logo-redes" src="img/twitter.png" alt="twitter"></a>
+                </div>
+            </footer>
+        </div>
+        <template>
+            <transition name="fade">
+                <section class="modal" v-show="modalError==true">
+                    <div class="contenedor-modal">
+                        <h4>Su solicitud no pudo ser procesada</h4>
+                        <p>{{messageError}} </p>
+                        <button type="button" @click="close" >Volver</button>
+                    </div>
+                </section>
+            </transition>
+        </template>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="script/create-cards.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+
+</html>

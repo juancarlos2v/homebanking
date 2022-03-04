@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <main>
+
+            <form>
+                <label for="user">Usuario</label>
+                <input type="mail" class="form-control" id="user" v-model="user">
+                <label for="password">Clave digital</label>
+                <input type="password" class="form-control" id="password" v-model="password">
+                <button class="bton-login" type="button" v-on:click="login"> Ingresar</button>
+            </form>
+
+        </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/web/script/home-admin.js"></script>
+</body>
+
+</html>

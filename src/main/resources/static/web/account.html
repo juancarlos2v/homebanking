@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style-home.css">
+    <link rel="stylesheet" href="css/style-accounts.css">
+    <link rel="stylesheet" href="css/style-account.css">
+
+    <title>Transacciones</title>
+</head>
+
+<body>
+    <div class="loader" id="onload">
+        <div class="lds-ripple">
+            <div></div>
+            <div></div>
+        </div>
+        <h4 style="color: white;">Mindhub Brothers</h4>
+    </div>
+    <header class="cabecera-cuentas">
+        <div class="cabecera">
+            <div class="logo-continental">
+                <img src="img/circulo.png" alt="logo_continental">
+                <h1>Mindhub</h1>
+            </div>
+            <div class="enlaces-header">
+                <a href="#">Mis Gestiones</a>
+                <a href="#">Atención al cliente</a>
+                <div class="salir"> <a href="index.html">Salir
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                        <path d="M7 12h14l-3 -3m0 6l3 -3" />
+                    </svg></a>
+                </div>
+            </div>
+        </div>
+        <nav class="nav-cuentas">
+            <a href="accounts.html">Cuentas</a>
+            <a href="cards.html">Tarjetas</a>
+            <a href="loan-application.html">Prestamos</a>
+        </nav>
+    </header>
+    <div id="app2">
+        <main class="main-transactions">
+
+            <div>
+                <div class="contenedor-movimientos">
+                    <h1 style="color: black;">Movimientos</h1>
+                    <h3>{{cuenta.number}} </h3>
+                    <h5>Saldo disponible ${{cuenta.balance}} </h5>
+                    <div class="contenedor-filtro">
+                        <div>
+                            <label>Desde</label>
+                            <select v-model="desde">
+                            <option v-for="transaction in transactions" :value="transaction.fecha"> {{transaction.fecha}}</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Hasta</label>
+                            <select v-model="hasta">
+                            <option v-for="transaction in transactions"  :value="transaction.fecha">{{transaction.fecha}} </option>
+                            </select>
+                        </div>
+                        <div>
+                            <button :disabled="desde=='' ||hasta=='' " type="button" @click="dateFilter">Buscar</button>
+                        </div>
+                        <div>
+                            <button type="button" @click="showAll">Todo</button>
+                        </div>
+                    </div>
+                    <!-- <p>{{desde}} - {{hasta}} </p> -->
+
+                    <table>
+                        <thead>
+                            <th class="td-concepto">Concepto</th>
+                            <th>Fecha</th>
+                            <th>Monto</th>
+                            <th>Saldo</th>
+                        </thead>
+                        <tbody>
+                            <tr v-for="transaction in transactions">
+                                <td class="td-concepto">
+                                    <h6>{{transaction.description}} </h6>
+                                </td>
+                                <td>{{transaction.fechaHora}}</td>
+                                <td>
+                                    <h6 :class="{ 'color-debito': transaction.type=='DEBITO','color-credito': transaction.type=='CREDITO'}">
+                                        <span v-if="transaction.type=='CREDITO'">+</span>
+                                        <span v-if="transaction.type=='DEBITO'">-</span> ${{transaction.amount}} </h6>
+                                </td>
+                                <td>${{transaction.resto}} </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="contenedor-pdf">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-text" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                    <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
+                    <line x1="9" y1="9" x2="10" y2="9" />
+                    <line x1="9" y1="13" x2="15" y2="13" />
+                    <line x1="9" y1="17" x2="15" y2="17" />
+                    </svg>
+                    <a style="color: #072146;  " href="javascript:saveDoc()">Descargar resumen</a>
+                </div>
+
+            </div>
+
+
+
+            <div class="contenedor-operaciones">
+                <p style="font-weight: bold; color: #072146; "> <svg style="margin-right:1rem ;" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="#072146" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+            <circle cx="12" cy="7" r="4" />
+            <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                </svg> {{client}} </p>
+                <a href="service-payments.html">Pagos </a>
+                <a href="#/">Resumenes de Tarjeta</a>
+                <a href="#/">Operaciones</a>
+                <a href="#/">Baja</a>
+                <a href="#/">Comparar comisiones</a>
+            </div>
+
+
+        </main>
+    </div>
+
+    <div class="mas-acciones">
+        <h5>Más para vos</h5>
+        <div class="contenedor-acciones">
+            <div class="accion-div">
+                <div>
+                    <img src="/web/img/proyecto.png" alt="">
+                </div>
+                <div>
+                    <h5 class="card-title">Operá 100% seguro</h5>
+                    <p class="card-text">Ingresá para saber cómo obtener tu Código SMS y Clave Token.</p>
+                    <a href="#/">> Ir a Factores de seguridad</a>
+                </div>
+            </div>
+            <div class="accion-div">
+                <div>
+                    <img src="/web/img/transferencia.png" alt="">
+                </div>
+                <div>
+                    <h5 class="card-title">Autorizá tu Debin</h5>
+                    <p class="card-text">Autorizá el DEBIN para constituir tu plazo fijo en otro banco.</p>
+                    <a href="#/">> Ir a Factores de seguridad</a>
+                </div>
+            </div>
+            <div class="accion-div">
+                <div>
+                    <img src="/web/img/ahorro.png" alt="">
+                </div>
+                <div>
+                    <h5 class="card-title">Viajá tranquilo</h5>
+                    <p class="card-text">Asegurá tu auto con hasta un 30% off los primeros 6 meses.</p>
+                    <a href="#/">> Cotiza tu seguro</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer>
+        <div class="logo-copyright">
+            <img src="img/circulo.png" alt="BCABA" width="70%">
+            <p>Copyright ® 2022.</p>
+        </div>
+
+        <div class="logos">
+            <a href="http://www.facebook.com" target="blank_"> <img class="logo-redes" src="img/facebook.png" alt="Facebook"></a>
+            <a href="http://www.instagram.com" target="blank_"><img class="logo-redes" src="img/instagram.png" alt="Instagram"></a>
+            <a href="http://www.twitter.com" target="blank_"><img class="logo-redes" src="img/twitter.png" alt="Whatsapp"></a>
+        </div>
+    </footer>
+    <script src="script/generatePDF.js"></script>
+    <script src="script/moment.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/jspdf-invoice-template@1.4.0/dist/index.js"></script>
+    <script src="script/account.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

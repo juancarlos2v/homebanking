@@ -1,0 +1,410 @@
+/*header*/
+
+.cabecera {
+    padding: 1rem 5rem 1rem 5rem;
+}
+
+.cabecera-cuentas {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0rem 0rem 0rem;
+}
+
+.cabecera-cuentas>nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 4rem;
+    background-color: #0d385c;
+    overflow: hidden;
+}
+
+.nav-cuentas a {
+    color: white;
+    height: max-content;
+}
+
+.nav-cuentas a:hover {
+    text-decoration: underline;
+}
+
+
+/*main*/
+
+.body-accounts {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 2rem 7rem;
+    background-color: rgb(221, 226, 230);
+}
+
+.contenedor-card-cuenta {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.card-cuenta {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 1rem 0.5rem 1rem;
+    margin-top: 1rem;
+    justify-content: space-around;
+    border: 0.1rem solid rgba(0, 0, 0, 0.164);
+    box-shadow: 2px 2px 50px 2px rgba(0, 0, 0, 0.2);
+    width: 35rem;
+    background-color: rgb(232, 232, 233);
+    color: #1871b9;
+    align-content: center;
+}
+
+
+/* .card-cuenta a {
+    font-weight: bolder;
+} */
+
+.card-cuenta a:hover {
+    font-weight: bolder;
+    color: #154e9c;
+}
+
+.numero-saldo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.saldo {
+    background-color: transparent;
+    color: #1871b9;
+    text-align: start;
+}
+
+.saldo-cuenta p {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 0;
+}
+
+.numero-cuenta p {
+    font-size: small;
+}
+
+.numero-cuenta {
+    display: flex;
+    flex-direction: column;
+}
+
+.contenedor-opciones-cuenta {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    border-top: 0.1rem solid rgba(0, 0, 0, 0.192);
+}
+
+.enlaces-header a {
+    color: white;
+    margin-right: 4rem;
+}
+
+.enlaces-cuenta {
+    display: flex;
+    justify-content: flex-end;
+    align-content: center;
+    align-items: center;
+}
+
+.enlaces-cuenta a {
+    padding-left: 1rem;
+}
+
+button {
+    border: none;
+}
+
+#button-baja {
+    color: #1871b9;
+    background-color: transparent;
+}
+
+#button-baja svg:hover {
+    font-weight: bolder;
+    color: #072146;
+}
+
+.button-cuenta {
+    color: white;
+    background-color: #1871b9;
+    padding: 0.5rem;
+    margin-right: 0.6rem;
+}
+
+.button-close {
+    margin-left: 1.5rem;
+    padding: 0.5rem;
+}
+
+.buttons {
+    margin-left: 2rem;
+}
+
+.disabled-input {
+    background-color: rgb(175, 173, 173);
+    padding: 0.5rem;
+    margin-right: 0.6rem;
+}
+
+
+/* CONTENEDOR PRESTAMOS */
+
+.contenedor-prestamos {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-top: 2rem;
+}
+
+.card-prestamos {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    margin-top: 1rem;
+    align-items: center;
+    background-color: rgb(232, 232, 233);
+    border: 0.1rem solid rgba(0, 0, 0, 0.164);
+    box-shadow: 2px 2px 50px 2px rgba(0, 0, 0, 0.2);
+    color: #1871b9;
+}
+
+.card-prestamos>div p,
+h5 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 0rem;
+}
+
+
+/* CONTENEDOR TABLA OPREACIONES */
+
+.contenedor-operaciones {
+    display: flex;
+    flex-direction: column;
+    margin: 4rem;
+    width: 20%;
+    height: 100%;
+    text-align: left;
+    background-color: rgb(232, 232, 233);
+    border: 0.1rem solid rgba(0, 0, 0, 0.164);
+}
+
+.contenedor-operaciones>a {
+    margin: 0;
+    padding: 0.6rem;
+    border-bottom: 0.1rem solid rgba(0, 0, 0, 0.164);
+    color: #072146;
+    font-weight: 500;
+}
+
+.contenedor-operaciones p {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0.5rem;
+    margin: 0;
+    border-bottom: 0.1rem solid rgba(0, 0, 0, 0.164);
+}
+
+.contenedor-operaciones a:hover {
+    background-color: #1871b9;
+    color: white;
+}
+
+.mas-acciones {
+    color: white;
+    background-color: #1464a5;
+    padding: 3rem 10rem 3rem 10rem;
+}
+
+.mas-acciones h5 {
+    margin-bottom: 2rem;
+}
+
+.contenedor-acciones {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.accion-div {
+    background-color: #1871b9;
+    height: 17rem;
+    width: 17rem;
+    padding: 1rem;
+    padding-top: 2rem;
+    text-align: center;
+    margin: auto;
+    border-radius: 0.4rem;
+}
+
+.accion-div a {
+    color: white;
+}
+
+.accion-div div>img {
+    width: 30%;
+}
+
+
+/**MODAL**/
+
+.desenfocar {
+    -webkit-filter: blur(2px);
+    -moz-filter: blur(2px);
+    -o-filter: blur(2px);
+    -ms-filter: blur(2px);
+    filter: blur(2px);
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* background-color: #1464a5; */
+    display: flex;
+}
+
+.contenedor-modal {
+    margin: auto;
+    width: 90%;
+    max-width: 30rem;
+    max-height: 90%;
+    background-color: white;
+    border-radius: 0.5rem 1rem;
+    border: 0.2rem solid rgba(0, 0, 0, 0.61);
+    padding: 1rem;
+    /***/
+}
+
+.modal-baja {
+    max-width: 35rem;
+}
+
+.modal-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-content: center;
+    height: 4rem;
+}
+
+.modal-info div {
+    display: flex;
+    align-items: center;
+}
+
+.modal-info select {
+    height: 50%;
+}
+
+@media screen and (max-width:800px) {
+    .cabecera {
+        padding: 0;
+        padding-top: 2.3rem;
+        padding-bottom: 1rem;
+    }
+    .cabecera-cuentas {
+        padding: 0;
+    }
+    .logo-continental {
+        align-items: center;
+        justify-content: center;
+        padding-bottom: 1.5rem;
+    }
+    .enlaces-header {
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .enlaces-header a {
+        color: white;
+    }
+    .body-accounts {
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+    }
+    .card-cuenta {
+        width: 100%;
+    }
+    .contenedor-operaciones {
+        display: none;
+        visibility: hidden;
+    }
+    .main-transactions {
+        padding: 0;
+    }
+    .mas-acciones {
+        padding: 1rem;
+        height: 24rem;
+        overflow: hidden;
+    }
+    .contenedor-acciones {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .accion-div {
+        margin: 1rem;
+    }
+    /**CONTENEDOR MODAL*/
+    .modal-info {
+        flex-direction: column;
+    }
+    .modal-baja {
+        width: 18rem;
+        height: 19rem;
+    }
+    .contenedor-baja {
+        height: 10rem;
+        width: 18rem;
+    }
+    .buttons {
+        margin: 0;
+        margin-top: 1rem;
+    }
+    .modal-info select {
+        height: 80%;
+    }
+}
+
+.color-credito {
+    color: green;
+}
+
+.color-debito {
+    color: red;
+}
+
+
+/**TRANSICIONES**/
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity .4s
+}
+
+.fade-enter,
+.fade-leave-to
+/* .fade-leave-active below version 2.1.8 */
+
+{
+    transition: opacity .4s;
+    opacity: 0
+}

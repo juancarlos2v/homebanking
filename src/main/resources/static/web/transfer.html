@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style-home.css">
+    <link rel="stylesheet" href="css/style-accounts.css">
+    <link rel="stylesheet" href="css/style-transactions.css">
+
+
+</head>
+
+<body>
+    <div class="loader" id="onload">
+        <div class="lds-ripple">
+            <div></div>
+            <div></div>
+        </div>
+        <h4 style="color: white;">Mindhub Brothers</h4>
+    </div>
+    <div id="app">
+        <header class="cabecera-cuentas">
+            <div class="cabecera">
+                <div class="logo-continental">
+                    <img src="img/circulo.png" alt="logo_continental">
+                    <h1>Mindhub</h1>
+                </div>
+                <a href="#">Mis Gestiones</a>
+                <a href="#">Atención al cliente</a>
+                <button class="bton-signout" type="button" v-on:click="signout">Salir
+                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                <path d="M7 12h14l-3 -3m0 6l3 -3" />
+              </svg> 
+            </button>
+
+            </div>
+            <nav class="nav-cuentas">
+                <a href="accounts.html">Cuentas</a>
+                <a href="cards.html">Tarjetas</a>
+                <a href="loan-application.html">Prestamos</a>
+            </nav>
+        </header>
+
+        <main class="main-transfer">
+            <div class="contenedor-form">
+                <h1 style="color: black;">Transferencia</h1>
+                <div style="display: flex; flex-direction: column;margin-top: 2rem;">
+                    <template>
+                    <h2>{{numberAccount}} </h2>
+                    <h3> ${{account.balance}} </h3>
+                    </template>
+                </div>
+                <div v-if="account.balance!=0">
+                    <div class="contenedor-button">
+                        <div>
+                            <button class="prop" type="button" @click="selectProp">Cuenta propia</button>
+                        </div>
+                        <div>
+                            <button class="terc" @click="selectOther" type="button">Nuevo destinatario</button>
+                        </div>
+                    </div>
+                    <template>
+                
+                    <div class="contenedor-numero" v-show="propia=='true'">
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-telegram" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" />
+                            </svg>
+
+
+                            <select id=" number" v-model="form.destino">
+                            <option  v-for="account in accounts " v-if="account.number!=numberAccount&&account.activate==true" :value='account.number'>{{account.number}}</option>
+                            </select>
+                        </div>
+                    </div>
+                
+                    </template>
+
+                    <template>
+                    <div class="contenedor-numero" v-show="propia=='false'">
+                        <div>
+                            <svg xmlns=" http://www.w3.org/2000/svg " class="icon icon-tabler icon-tabler-brand-telegram " width="25 " height="44 " viewBox="0 0 24 24 " stroke-width="1.5 " stroke="#2c3e50 " fill="none " stroke-linecap="round
+                        " stroke-linejoin="round ">
+                                <path stroke="none " d="M0 0h24v24H0z " fill="none "/>
+                                <path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4 " />
+                            </svg>
+                            <input v-model="form.destino" id="destino " type="text " placeholder="N° Cuenta " />
+                        </div>
+                    </div>
+                    </template>
+
+                    <template>
+                    <form>
+                        <div class="form-inputs " v-show="form.destino!=''">
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg " class="icon icon-tabler icon-tabler-coin " width="30 " height="30 " viewBox="0 0 24 24 " stroke-width="1.5 " stroke="#2c3e50 " fill="none " stroke-linecap="round
+                        " stroke-linejoin="round ">
+                                <path stroke="none " d="M0 0h24v24H0z " fill="none "/>
+                                <circle cx="12 " cy="12 " r="9 " />
+                                <path d="M14.8 9a2 2 0 0 0 -1.8 -1h-2a2 2 0 0 0 0 4h2a2 2 0 0 1 0 4h-2a2 2 0 0 1 -1.8 -1 " />
+                                <path d="M12 6v2m0 8v2 " />
+                            </svg>
+                                <input v-model="form.monto" id="amount " type="number " placeholder="Monto " style="width:7rem; " />
+                            </div>
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg " class="icon icon-tabler icon-tabler-pencil " width="30 " height="30 " viewBox="0 0 24 24 " stroke-width="1.5 " stroke="#2c3e50 " fill="none " stroke-linecap="round
+                        " stroke-linejoin="round ">
+                                <path stroke="none " d="M0 0h24v24H0z " fill="none "/>
+                                <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4 " />
+                                <line x1="13.5 " y1="6.5 " x2="17.5 " y2="10.5 " />
+                            </svg>
+                                <input v-model="form.description" id="description " type="text " placeholder="Concepto " />
+                            </div>
+                        </div>
+                        <div v-show="form.destino!=''&&propia!=''" class="contenedor-t">
+                        <button  :disabled="form.destino==''||form.monto==0||form.description=='' " :class="{'transfer-disabled': form.destino==''||form.monto!=0||form.description!=''  ,'button-transfer': form.destino!=''&&form.monto!=0&&form.description!='' } " type="button" @click="transfer ">Transferir</button>
+                        </div>
+                
+                    </form>
+                    </template>
+                </div>
+                <div v-else>
+                    <p>No cuenta con saldo para esta operacion.</p>
+                    <a href="/web/accounts.html">Volver a cuentas</button>
+                </div>
+            </div>
+            <div class="contenedor-operaciones">
+                <p style="font-weight: bold; color: #072146; "> <svg style="margin-right:1rem ;" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="#072146" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <circle cx="12" cy="7" r="4" />
+                <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                    </svg> cliente </p>
+                <a href="/web/service-payments.html">Pagos </a>
+                    <a href="#/">Resumenes de Tarjeta</a>
+                    <a href="#/">Operaciones</a>
+                    <a href="#/">Baja</a>
+                    <a href="#/">Comparar comisiones</a>
+                </div>
+        </main>
+
+        <div class="mas-acciones ">
+            <h5>Más para vos</h5>
+            <div class="contenedor-acciones ">
+                <div class="accion-div ">
+                    <div>
+                        <img src="/web/img/proyecto.png " alt=" ">
+                    </div>
+                    <div>
+                        <h5 class="card-title ">Operá 100% seguro</h5>
+                        <p class="card-text ">Ingresá para saber cómo obtener tu Código SMS y Clave Token.</p>
+                        <a href="#/ ">> Ir a Factores de seguridad</a>
+                    </div>
+                </div>
+                <div class="accion-div ">
+                    <div>
+                        <img src="/web/img/transferencia.png " alt=" ">
+                    </div>
+                    <div>
+                        <h5 class="card-title ">Autorizá tu Debin</h5>
+                        <p class="card-text ">Autorizá el DEBIN para constituir tu plazo fijo en otro banco.</p>
+                        <a href="#/ ">> Ir a Factores de seguridad</a>
+                    </div>
+                </div>
+                <div class="accion-div ">
+                    <div>
+                        <img src="/web/img/ahorro.png " alt=" ">
+                    </div>
+                    <div>
+                        <h5 class="card-title ">Viajá tranquilo</h5>
+                        <p class="card-text ">Asegurá tu auto con hasta un 30% off los primeros 6 meses.</p>
+                        <a href="#/ ">> Cotiza tu seguro</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <footer>
+            <div class="logo-copyright ">
+                <img src="img/circulo.png " alt="BCABA " width="70% ">
+                <p>Copyright ® 2022.</p>
+            </div>
+
+            <div class="logos ">
+                <a href="http://www.facebook.com " target="blank_ "> <img class="logo-redes " src="img/facebook.png " alt="Facebook "></a>
+                <a href="http://www.instagram.com " target="blank_ "><img class="logo-redes " src="img/instagram.png " alt="Instagram "></a>
+                <a href="http://www.twitter.com " target="blank_ "><img class="logo-redes " src="img/twitter.png " alt="twitter "></a>
+            </div>
+        </footer>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js "></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js "></script>
+        <script src="script/transfer.js "></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js " integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p " crossorigin="anonymous "></script>
+
+</body>
+
+</html>

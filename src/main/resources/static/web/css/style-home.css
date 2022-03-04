@@ -1,0 +1,385 @@
+@import url('https://fonts.googleapis.com/css2?family=Dongle:wght@300&family=Lato:wght@400;700&family=Maven+Pro&display=swap');
+a {
+    text-decoration: none;
+}
+
+body {
+    position: absolute;
+    z-index: 0;
+    width: 100%;
+    font-family: 'Dongle', sans-serif;
+    font-family: 'Lato', sans-serif;
+}
+
+.loader {
+    position: fixed;
+    z-index: 1000;
+    background-color: #1464a5d8;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    clip-path: inset(0 0 0 0);
+    transition: clip-path 3s ease-in-out;
+    /* transition: .15s ease-in-out; */
+}
+
+.loader2 {
+    clip-path: inset(100% 0 0 0);
+    /* transition: opacity .1s; */
+    transition: 1s ease-in-out;
+    opacity: 0
+}
+
+
+/*PRE LOADER*/
+
+.lds-ripple {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.lds-ripple div {
+    position: absolute;
+    border: 4px solid #fff;
+    opacity: 1;
+    border-radius: 50%;
+    animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+
+.lds-ripple div:nth-child(2) {
+    animation-delay: -0.5s;
+}
+
+@keyframes lds-ripple {
+    0% {
+        top: 36px;
+        left: 36px;
+        width: 0;
+        height: 0;
+        opacity: 1;
+    }
+    100% {
+        top: 0px;
+        left: 0px;
+        width: 72px;
+        height: 72px;
+        opacity: 0;
+    }
+}
+
+
+/*HEADER*/
+
+.cabecera {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cabecera-index {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 5rem 0 5rem;
+}
+
+.cabecera>a {
+    color: white;
+}
+
+header {
+    text-align: center;
+    color: white;
+    background-color: #072146;
+}
+
+h1 {
+    color: white;
+}
+
+header {
+    padding: 1rem 1rem 1rem 1rem;
+}
+
+.salir>a {
+    color: white;
+}
+
+.logo-continental {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 15rem;
+    align-items: flex-start;
+}
+
+.logo-continental img {
+    width: 20%;
+}
+
+.nav-home {
+    display: flex;
+    justify-content: space-around;
+    width: 30rem;
+    align-items: center;
+}
+
+.nav-home>img {
+    width: 3rem;
+}
+
+.nav-home a,
+.ingreso-banca>a {
+    color: white;
+    text-decoration: none;
+}
+
+.formulario-ingreso {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 20rem;
+}
+
+.formulario-ingreso>input {
+    width: 12rem;
+}
+
+#btton-banca {
+    background-color: rgb(6, 117, 89);
+    border: none;
+    color: white;
+    padding: 0.5rem;
+}
+
+.bton-login {
+    border: none;
+    background-color: #1464a5;
+    color: white;
+}
+
+.bton-signout {
+    background: transparent;
+    border: none;
+    color: white;
+}
+
+
+/*MAIN*/
+
+
+/*banner*/
+
+.carousel-item {
+    transition: transform 1s ease-in-out;
+}
+
+.carousel-fade .active.carousel-item-start,
+.carousel-fade .active.carousel-item-end {
+    transition: opacity 0s 1s;
+}
+
+.contenedor-opciones {
+    background-color: rgb(221, 226, 230);
+    display: flex;
+    justify-content: space-around;
+    border-top: 0.5rem solid #072146;
+    padding-top: 1rem;
+    text-align: center;
+}
+
+
+/**********************/
+
+.contenedor-opciones a {
+    color: #072146;
+}
+
+.servicios {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+    height: auto;
+    background-color: #072146;
+}
+
+.serv {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    color: white;
+}
+
+.info-index {
+    width: 100%;
+    height: 15%;
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+.info-index p {
+    font-size: small;
+    margin: 0;
+}
+
+.img-serv {
+    height: 85%;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.img-serv img {
+    width: 100%;
+}
+
+.serv a {
+    color: white;
+}
+
+.aviso {
+    background-color: rgb(221, 226, 230);
+    padding: 1rem;
+}
+
+.aviso a {
+    color: #072146;
+}
+
+
+/* footer */
+
+footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4rem 10rem 4rem 10rem;
+    background-color: #072146;
+}
+
+.logo>h3 {
+    color: white;
+}
+
+.logo-copyright>p {
+    color: white;
+    font-size: small;
+}
+
+.info>p {
+    text-align: center;
+    margin: 0;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* width: 15rem; */
+    line-height: 100%;
+}
+
+.logos {
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
+    width: 10rem;
+}
+
+.logo-redes {
+    height: 3rem;
+}
+
+.logo-copyright {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media screen and (max-width:800px) {
+    header {
+        padding: 0;
+        padding-top: 1rem;
+    }
+    .cabecera {
+        display: flex;
+        flex-direction: column;
+    }
+    .logo-continental {
+        display: flex;
+        align-items: center;
+        width: 12rem;
+    }
+    .cabecera-index {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+    }
+    .cabecera-index nav {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        width: 100%;
+    }
+    .nav-home a {
+        margin: 0.2rem;
+    }
+    #btton-banca {
+        width: 100%;
+    }
+    .contenedor-opciones {
+        padding: 1rem 1rem 1rem 1rem;
+        height: 5rem;
+    }
+    .contenedor-opciones>div {
+        margin-left: 1rem;
+        padding: 0;
+    }
+    .contenedor-opciones p {
+        height: 0%;
+        display: none;
+    }
+    .servicios {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+    }
+    .serv {
+        display: flex;
+        flex-direction: row;
+        height: auto;
+        border-bottom: solid rgba(255, 255, 255, 0.295) 0.1rem;
+    }
+    .info-index {
+        padding: 0;
+        padding: 1rem 1rem;
+        text-align: center;
+        width: 100%;
+    }
+    .img-serv {
+        display: none;
+    }
+    .aviso {
+        text-align: center;
+    }
+    footer {
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: space-between;
+        padding: 2rem 0 0 0;
+    }
+    footer>div {
+        padding-bottom: 2rem;
+    }
+}

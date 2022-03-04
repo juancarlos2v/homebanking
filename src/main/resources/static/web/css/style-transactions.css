@@ -1,0 +1,97 @@
+    .main-transfer {
+        display: flex;
+        justify-content: space-between;
+        padding: 5rem;
+        padding-left: 11rem;
+        padding-right: 11rem;
+        height: auto;
+        background-color: rgb(221, 226, 230);
+    }
+    
+    .contenedor-form {
+        background-color: rgb(232, 232, 233);
+        border: 0.1rem solid rgba(0, 0, 0, 0.164);
+        box-shadow: 2px 2px 50px 2px rgba(0, 0, 0, 0.2);
+        padding: 3rem;
+        height: 30rem;
+    }
+    
+    .contenedor-button {
+        display: flex;
+        justify-content: flex-start;
+    }
+    
+    .contenedor-button div {
+        display: flex;
+        width: 13rem;
+        height: 3.5rem;
+    }
+    
+    .contenedor-button button {
+        width: 10rem;
+        border: 0.1rem solid rgba(0, 0, 0, 0.164);
+    }
+    
+    .contenedor-numero div {
+        margin-top: 1.5rem;
+        display: flex;
+        justify-content: baseline;
+    }
+    
+    svg {
+        margin-right: 0.5rem;
+    }
+    
+    .contenedor-numero input {
+        border: none;
+        border-bottom: solid 0.1rem;
+    }
+    
+    form {
+        display: flex;
+        flex-direction: column;
+        margin-top: 1rem;
+    }
+    
+    form input {
+        border: none;
+        border-bottom: solid 0.1rem rgb(68, 68, 68);
+    }
+    
+    .form-inputs {
+        display: flex;
+        justify-content: left;
+    }
+    
+    .form-inputs div {
+        margin-right: 2rem;
+    }
+    
+    .contenedor-t {
+        margin-top: 2rem;
+        width: 8rem;
+    }
+    
+    .button-transfer {
+        border: none;
+        background-color: #1464a5;
+        color: white;
+        width: 100%;
+    }
+    
+    .activate {
+        background-color: #1464a5;
+        color: white;
+    }
+    
+    @media screen and (max-width:800px) {
+        .main-transfer {
+            padding: 0;
+        }
+        .contenedor-form {
+            width: 100%;
+            padding-top: 3rem;
+            padding-left: 1.8rem;
+            padding-right: 1.8rem;
+        }
+    }

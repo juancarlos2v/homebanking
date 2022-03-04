@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style-home.css">
+    <link rel="stylesheet" href="css/style-accounts.css">
+
+
+    <title>Cuentas</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <div class="contenedor-total">
+            <div class="loader" id="onload">
+                <div class="lds-ripple">
+                    <div></div>
+                    <div></div>
+                </div>
+                <h4 style="color: white;">Mindhub</h4>
+            </div>
+            <header class="cabecera-cuentas">
+                <div class="cabecera">
+                    <div class="logo-continental">
+                        <img src="img/circulo.png" alt="logo_continental">
+                        <h1 style="margin: 0;">Mindhub</h1>
+                    </div>
+                    <div class="enlaces-header">
+                        <a href="#">Mis Gestiones</a>
+                        <a href="#">Atención al cliente</a>
+                        <button class="bton-signout" type="button" v-on:click="signout">Salir
+                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                <path d="M7 12h14l-3 -3m0 6l3 -3" />
+              </svg> 
+                </button>
+                    </div>
+
+                </div>
+                <nav class="nav-cuentas">
+                    <p style="margin: 0;">Cuentas</p>
+                    <a href="cards.html">Tarjetas</a>
+                    <a href="loan-application.html">Prestamos</a>
+                </nav>
+            </header>
+
+            <main class="body-accounts">
+                <div>
+                    <div class="contenedor-cuentas">
+                        <div v-show="cuentas">
+                            <h4> Cuentas </h4>
+                            <div class="contenedor-card-cuenta">
+                                <template>     
+                                <div v-show="cuenta.activate==true" class="card-cuenta" v-for="cuenta in cuentas">
+                                    <div class="numero-saldo">
+                                        <div class="numero-cuenta">
+                                            <h4> <span v-show="cuenta.accountType=='AHORRO'" >Caja de Ahorro</span> <span v-show="cuenta.accountType=='CORRIENTE'" >Cuenta Corriente</span><h5> {{cuenta.number}}</h5></h5>
+                                                <p>{{cuenta.creationDate}}</p>
+                                        </div>
+                                        <div class="saldo-cuenta">
+                                            <h1 class="saldo"> ${{cuenta.balance}} </h1>
+                                        </div>
+                                    </div>
+                                    <div class="contenedor-opciones-cuenta">
+                                        <div class="enlaces-cuenta">
+                                            <a v-bind:href="'account.html?number='+cuenta.number">Movimientos</a>
+                                            <a v-bind:href="'transfer.html?account='+cuenta.number">Transferir</a>
+                                        </div>
+                                        <div>
+                                            <button type="button" @click="requestUnubscribe(cuenta)" id="button-baja" > <abbr style="text-decoration: none;" title="Solicitar baja."><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-down-circle" width="25" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#1871b9" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                                <circle cx="12" cy="12" r="9" />
+                                                <line x1="8" y1="12" x2="12" y2="16" />
+                                                <line x1="12" y1="8" x2="12" y2="16" />
+                                                <line x1="16" y1="12" x2="12" y2="16" />
+                                              </svg></abbr></button>
+                                        </div>
+                                    </div>
+                                </div>
+                       
+                            </template>
+                            </div>
+                        </div>
+                        <button type="button" @click="requestAccount" class="button-cuenta" style="margin-top: 1rem;">Abrir nueva cuenta</button>
+                    </div>
+
+
+                    <div class="contenedor-prestamos" v-if="prestamos.length!=0">
+                        <h4>Prestamos</h4>
+                        <div class="card-prestamos" v-for="prestamos in prestamos">
+                            <div>
+                                <h5>{{prestamos.name}}</h5>
+                                <p>Financiado en {{prestamos.payment}} cuotas</p>
+                            </div>
+                            <div>
+                                <h3>${{prestamos.amount}} </h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div v-else style="margin-top: 3rem;;">
+                        <h5 style="margin-bottom: 1rem">Solicita un prestamo</h5>
+                        <button type="button" style="border: none; background-color: #1871b9; color:white;padding: 0.5rem;">Ir a prestamos</button>
+                    </div>
+
+                </div>
+
+                <div class="contenedor-operaciones">
+                    <p style="font-weight: bold; color: #072146; "> <svg style="margin-right:1rem ;" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="#072146" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <circle cx="12" cy="7" r="4" />
+                    <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                        </svg>{{cliente.firstName}} </p>
+                    <a href="service-payments.html">Pagos </a>
+                    <a href="#/">Resumenes de Tarjeta</a>
+                    <a href="#/">Operaciones</a>
+                    <a href="#/">Baja</a>
+                    <a href="#/">Comparar comisiones</a>
+                </div>
+            </main>
+
+
+            <div class="mas-acciones">
+                <h5>Más para vos</h5>
+                <div class="contenedor-acciones">
+                    <div class="accion-div">
+                        <div>
+                            <img src="/web/img/proyecto.png" alt="">
+                        </div>
+                        <div>
+                            <h5 class="card-title">Operá 100% seguro</h5>
+                            <p class="card-text">Ingresá para saber cómo obtener tu Código SMS y Clave Token.</p>
+                            <a href="#/">> Ir a Factores de seguridad</a>
+                        </div>
+                    </div>
+                    <div class="accion-div">
+                        <div>
+                            <img src="/web/img/transferencia.png" alt="">
+                        </div>
+                        <div>
+                            <h5 class="card-title">Autorizá tu Debin</h5>
+                            <p class="card-text">Autorizá el DEBIN para constituir tu plazo fijo en otro banco.</p>
+                            <a href="#/">> Ir a Factores de seguridad</a>
+                        </div>
+                    </div>
+                    <div class="accion-div">
+                        <div>
+                            <img src="/web/img/ahorro.png" alt="">
+                        </div>
+                        <div>
+                            <h5 class="card-title">Viajá tranquilo</h5>
+                            <p class="card-text">Asegurá tu auto con hasta un 30% off los primeros 6 meses.</p>
+                            <a href="#/">> Cotiza tu seguro</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer>
+                <div class="logo-copyright">
+                    <img src="img/circulo.png" alt="BCABA" width="70%">
+                    <p>Copyright ® 2022.</p>
+                </div>
+
+                <div class="logos">
+                    <a href="http://www.facebook.com" target="blank_"> <img class="logo-redes" src="img/facebook.png" alt="Facebook"></a>
+                    <a href="http://www.instagram.com" target="blank_"><img class="logo-redes" src="img/instagram.png" alt="Instagram"></a>
+                    <a href="http://www.twitter.com" target="blank_"><img class="logo-redes" src="img/twitter.png" alt="twitter"></a>
+                </div>
+            </footer>
+        </div>
+        <template>
+            <transition name="fade">
+                <section class="modal" v-show="modalCuenta==true">
+                    <div class="contenedor-modal contenedor-baja">
+                        <h2>Elegí tipo de cuenta</h2>
+                        <div class="modal-info">
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-wallet" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                    <path d="M17 8v-3a1 1 0 0 0 -1 -1h-10a2 2 0 0 0 0 4h12a1 1 0 0 1 1 1v3m0 4v3a1 1 0 0 1 -1 1h-12a2 2 0 0 1 -2 -2v-12" />
+                                    <path d="M20 12v4h-4a2 2 0 0 1 0 -4h4" />
+                                </svg>
+                                <select id="accountType" v-model="accountType">
+                                    <option :value="'AHORRO'">Cuenta ahorro</option>
+                                    <option :value="'CORRIENTE'">Cuenta corriente</option>
+                                </select>
+                            </div>
+                            <div class="buttons">
+                                    <button type="button" :disabled='accountType=="" '   @click="newAccount" :class="{'disabled-input': accountType=='','button-cuenta': accountType!='' } ">Abrir cuenta</button>
+                                    <button type="button " class="button-close " @click="close()">Volver</button>
+                             </div>
+                            </div>
+                        </div>
+                </section>
+            </transition>
+        </template>
+
+        <template>
+            <transition name="fade">
+                <section class="modal " v-show="modalBaja==true">
+                    <div class="contenedor-modal modal-baja">
+                        <h4>Solicitud de baja para cuenta {{accountDelete.number}} </h4>
+                       
+                        <transition name="fade">
+                            <div v-show="accountDelete.balance>0">
+                             
+                                <p>Usted posee actualmente ${{accountDelete.balance}} en la cuenta, transfiera el saldo a otra cuenta para continuar con la solicitud.</p>
+                                <div class="modal-info" >
+                                <div v-if="cuentasActivas>1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-telegram" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                        <path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" />
+                                      </svg>
+                                    <select   id="account" v-model="cuentaDestino" style="margin-left: 0.7rem;">
+                                        <option v-for="cuenta in cuentas" :value="cuenta.number"  v-if="cuenta.number!=accountDelete.number&&cuenta.activate==true">{{cuenta.number}} </option>
+                                    </select>
+                                </div>
+                                <div v-else>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-telegram" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                        <path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" />
+                                      </svg>
+                                    <input v-model="cuentaDestino" type="text" />
+                                </div>
+                                <div class="buttons" >
+                                    <button type="button" v-on:click="transfer" :disabled="cuentaDestino=='' " :class="{'disabled-input': cuentaDestino=='' ,'button-cuenta': cuentaDestino!=''  } ">Transferir</button>
+                                    <button type="button"  class="button-close " @click="close()">Volver</button>
+                                </div>
+                            </div>
+                            </div>
+                        </transition>
+                        <div v-show="accountDelete.balance==0">
+                            <button type="button"  @click="deleteAccount(accountDelete.number)" class="button-cuenta">Dar de baja</button>
+                            <button type="button" class="button-close" @click="close()">Volver</button>
+                         </div>
+                    </div>
+                </section>
+            </transition>
+        </template>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="script/accounts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

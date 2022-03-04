@@ -1,0 +1,97 @@
+.main-transactions {
+    display: flex;
+    justify-content: space-around;
+    padding: 4rem 5rem 1rem 5rem;
+    background-color: rgb(221, 226, 230)
+}
+
+.contenedor-operaciones {
+    margin-top: 6rem;
+}
+
+.contenedor-filtro {
+    display: flex;
+    margin-top: 2rem;
+}
+
+.contenedor-filtro div {
+    margin-right: 2rem;
+}
+
+.contenedor-movimientos table {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.contenedor-pdf {
+    display: flex;
+    align-items: flex-end;
+    margin-top: 1rem;
+}
+
+tr {
+    border-bottom: 0.1rem solid rgba(0, 0, 0, 0.192);
+}
+
+tbody>tr:hover {
+    background-color: white;
+}
+
+@media screen and (max-width:800px) {
+    .cabecera {
+        padding: 0;
+        padding-top: 2.3rem;
+        padding-bottom: 1rem;
+    }
+    .cabecera-cuentas {
+        padding: 0;
+    }
+    .logo-continental {
+        align-items: center;
+        justify-content: center;
+        padding-bottom: 1.5rem;
+    }
+    .enlaces-header {
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .enlaces-header a {
+        color: white;
+    }
+    .main-transactions {
+        padding: 1rem;
+        padding-top: 2rem;
+    }
+    .contenedor-filtro {
+        display: flex;
+        margin-top: 1rem;
+        align-items: flex-end;
+    }
+    .contenedor-pdf {
+        display: flex;
+        align-items: flex-end;
+        margin-top: 1rem;
+    }
+    .contenedor-filtro div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-right: 1rem;
+    }
+    table {
+        width: 100%;
+        margin-top: 2rem;
+    }
+    td,
+    th {
+        text-align: left;
+        width: 35%;
+        margin-right: 2rem;
+    }
+    .td-concepto {
+        display: flex;
+        margin-right: 2rem;
+    }
+}

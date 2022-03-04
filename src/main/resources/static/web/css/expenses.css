@@ -1,0 +1,25 @@
+.main-expenses {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 7rem;
+    background-color: rgb(221, 226, 230)
+}
+
+.contenedor-consumos {
+    width: 45rem;
+    margin-top: 2rem;
+}
+
+table {
+    margin-top: 1rem;
+    width: 100%;
+}
+
+td {
+    border-bottom: 0.1rem solid rgba(168, 168, 168, 0.164);
+}
+
+tbody>tr:hover {
+    background-color: white;
+}

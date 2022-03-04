@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style-home.css">
+    <link rel="stylesheet" href="css/style-accounts.css">
+    <link rel="stylesheet" href="css/expenses.css">
+
+
+    <title>Cuentas</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <div class="contenedor-total">
+            <div class="loader" id="onload">
+                <div class="lds-ripple">
+                    <div></div>
+                    <div></div>
+                </div>
+                <h4 style="color: white;">Mindhub</h4>
+            </div>
+            <header class="cabecera-cuentas">
+                <div class="cabecera">
+                    <div class="logo-continental">
+                        <img src="img/circulo.png" alt="logo_continental">
+                        <h1>Mindhub</h1>
+                    </div>
+                    <a href="#">Mis Gestiones</a>
+                    <a href="#">Atención al cliente</a>
+                    <button class="bton-signout" type="button" v-on:click="signout">Salir
+                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-logout" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                <path d="M7 12h14l-3 -3m0 6l3 -3" />
+              </svg> 
+            </button>
+
+                </div>
+                <nav class="nav-cuentas">
+                    <a href="accounts.html">Cuentas</a>
+                    <a href="cards.html">Tarjetas</a>
+                    <a href="loan-application.html">Prestamos</a>
+                </nav>
+            </header>
+
+            <main class="main-expenses">
+                <div>
+                    <h4>Consumos</h4>
+
+                    <div class="contenedor-consumos">
+                        <div style="display: flex;align-items:flex-end;">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-credit-card" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <rect x="3" y="5" width="18" height="14" rx="3" />
+                            <line x1="3" y1="10" x2="21" y2="10" />
+                            <line x1="7" y1="15" x2="7.01" y2="15" />
+                            <line x1="11" y1="15" x2="13" y2="15" />
+                          </svg>
+                            <h6 style="margin-left: 1rem
+                            ;">{{tarjeta.number}} </h6>
+                        </div>
+                        <table>
+                            <thead>
+                                <th> Concepto</th>
+                                <th>Fecha</th>
+                                <th>Monto</th>
+                                <th>Cuota</th>
+                            </thead>
+                            <tbody>
+                                <tr v-for="consumo in consumos">
+                                    <td>{{consumo.description}}</td>
+                                    <td>{{consumo.date}} </td>
+                                    <td>${{consumo.amount}} </td>
+                                    <td v-if="consumo.payment==0">1/1 </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+                <div class="contenedor-operaciones">
+                    <p style="font-weight: bold; color: #072146; "> <svg style="margin-right:1rem ;" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="#072146" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <circle cx="12" cy="7" r="4" />
+                    <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+                        </svg>{{cliente}} </p>
+                    <a href="service-payments.html">Pagos </a>
+                    <a href="#/">Resumenes de Tarjeta</a>
+                    <a href="#/">Operaciones</a>
+                    <a href="#/">Baja</a>
+                    <a href="#/">Comparar comisiones</a>
+                </div>
+            </main>
+            <footer>
+                <div class="logo-copyright">
+                    <img src="img/circulo.png" alt="BCABA" width="70%">
+                    <p>Copyright ® 2022.</p>
+                </div>
+
+                <div class="logos">
+                    <a href="http://www.facebook.com" target="blank_"> <img class="logo-redes" src="img/facebook.png" alt="Facebook"></a>
+                    <a href="http://www.instagram.com" target="blank_"><img class="logo-redes" src="img/instagram.png" alt="Instagram"></a>
+                    <a href="http://www.twitter.com" target="blank_"><img class="logo-redes" src="img/twitter.png" alt="twitter"></a>
+                </div>
+            </footer>
+        </div>
+
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="script/expenses.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

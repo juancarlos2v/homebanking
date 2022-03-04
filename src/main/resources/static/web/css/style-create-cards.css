@@ -1,0 +1,70 @@
+.contenedor-registro-card {
+    display: flex;
+    padding: 5rem;
+    padding-bottom: 0;
+    background-color: rgb(235, 235, 235);
+}
+
+.contenedor-registro-card button {
+    border: none;
+    color: white
+}
+
+.contenedor-form {
+    width: 50%;
+}
+
+.contenedor-img-form {
+    width: 50%;
+}
+
+.contenedor-input {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.contenedor-input div {
+    margin-right: 1rem;
+}
+
+.contenedor-input button {
+    padding: 1rem;
+    width: 7rem;
+    margin-right: 1rem;
+}
+
+.button-create-card {
+    margin-top: 1rem;
+    width: 7rem;
+    padding: 0.5rem;
+    background-color: #1464a5;
+}
+
+.button-create-disabled {
+    margin-top: 1rem;
+    width: 7rem;
+    padding: 0.5rem;
+    background-color: #798d9e;
+}
+
+.debit,
+.credit {
+    background-color: #798d9e;
+}
+
+.activate {
+    background-color: #1464a5;
+}
+
+@media screen and (max-width:800px) {
+    .contenedor-img-form {
+        display: none;
+    }
+    .contenedor-registro-card {
+        padding: 1rem;
+    }
+    .contenedor-form {
+        width: 100%
+    }
+}

@@ -25,7 +25,7 @@ let app = new Vue({
                 this.name = this.cliente.firstName;
                 console.log(this.cliente);
                 console.log(this.name);
-                sessionStorage.setItem('nombre', this.name);
+                sessionStorage.nombre(this.name);
             })
             .catch(error => {
                 console.log(error)
@@ -86,7 +86,6 @@ let app = new Vue({
         signout() {
             console.log("salir");
             axios.post('/api/logout').then(response => {
-                    console.log('signed out!!!');
                     window.location.href = "/web/index.html";
                 })
                 .catch(error => {

@@ -7,7 +7,7 @@ console.log(number);
 let app = new Vue({
     el: '#app2',
     data: {
-        client: "",
+        client: "mabel",
         transactions: [],
         cuenta: [],
         t: [],
@@ -15,7 +15,7 @@ let app = new Vue({
         hasta: "",
     },
     mounted() {
-        axios.get(`/api/accounts/${number}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
+        axios.get(`/api/accounts/number/${number}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
             .then(respuesta => {
 
                 this.cuenta = respuesta.data;
@@ -107,7 +107,7 @@ window.addEventListener("load", function() {
 function saveDoc() {
     window.jsPDF = window.jspdf.jsPDF;
     //window.html2canvas = html2canvas;
-    var pdf = new jsPDF('p', 'pt', [1200, 1450]); // 'pt', 'a4'
+    var pdf = new jsPDF('p', 'pt', [1200, 700]); // 'pt', 'a4'
     pdf.setFontSize(10);
     const contenedor = document.getElementsByClassName('contenedor-movimientos')[0];
 

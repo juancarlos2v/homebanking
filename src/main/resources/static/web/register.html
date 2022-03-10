@@ -11,84 +11,116 @@
 </head>
 
 <body>
-    <div class="loader" id="onload">
-        <div class="lds-ripple">
-            <div></div>
-            <div></div>
-        </div>
-        <h4 style="color: white;">Mindhub Brothers</h4>
-    </div>
     <div id="app">
-        <header>
-            <div class="cabecera-index" style="align-items: center;">
-                <a class="logo-continental" href="/web/index.html">
-                    <img src="img/circulo.png" alt="logo_continental">
-                    <h1>Mindhub</h1>
+        <div class="contenedor-total">
+            <div class="loader" id="onload">
+                <div class="lds-ripple">
+                    <div></div>
+                    <div></div>
+                </div>
+                <h4 style="color: white;">Mindhub Brothers</h4>
+            </div>
 
-                </a>
-                <h3>Nuevo Cliente</h3>
-                <div class="logo-user">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-plus" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <header>
+                <div class="cabecera-index" style="align-items: center;">
+                    <a class="logo-continental" href="/web/index.html">
+                        <img src="img/circulo.png" alt="logo_continental">
+                        <h1>Mindhub</h1>
+
+                    </a>
+                    <h3>Nuevo Cliente</h3>
+                    <div class="logo-user">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-plus" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                     <circle cx="9" cy="7" r="4" />
                     <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
                     <path d="M16 11h6m-3 -3v6" />
                   </svg>
+                    </div>
                 </div>
-            </div>
-        </header>
-        <main>
-            <div class="contenedor">
-                <div class="contenedor-form">
-                    <h1> Abrí una cuenta y pedí tus tarjetas online.</h1>
-                    <p>Completá el formulario para acceder a descuentos, sumar puntos hubbers con tus compras y más.</p>
-                    <form>
-                        <div>
-                            <div class="inputs">
-                                <label for="name">Nombre</label>
-                                <input type="text" class="form-control" id="name" v-model="registro.firstName">
+            </header>
+            <main>
+                <div class="contenedor">
+                    <div class="contenedor-form">
+                        <h1> Abrí una cuenta y pedí tus tarjetas online.</h1>
+                        <p>Completá el formulario para acceder a descuentos, sumar puntos hubbers con tus compras y más.</p>
+                        <form>
+                            <div>
+                                <div class="inputs">
+                                    <label for="name">Nombre</label>
+                                    <input type="text" class="form-control" id="name" v-model="registro.firstName">
+                                </div>
+                                <div>
+                                    <label for="lastname">Apellido</label>
+                                    <input type="text" class="form-control" id="lastname" v-model="registro.lastName">
+                                </div>
                             </div>
                             <div>
-                                <label for="lastname">Apellido</label>
-                                <input type="text" class="form-control" id="lastname" v-model="registro.lastName">
+                                <div>
+                                    <label for="email">Email</label>
+                                    <input type="mail" class="form-control" id="email" v-model="registro.email">
+                                </div>
+                                <div>
+                                    <label for="password">Nueva contraseña</label>
+                                    <input type="password" class="form-control" id="password" v-model="registro.password">
+                                </div>
                             </div>
-                        </div>
-                        <div>
-                            <div>
-                                <label for="email">Email</label>
-                                <input type="mail" class="form-control" id="email" v-model="registro.email">
-                            </div>
-                            <div>
-                                <label for="password">Nueva contraseña</label>
-                                <input type="password" class="form-control" id="password" v-model="registro.password">
-                            </div>
-                        </div>
-                        <p v-show="incompleto==true" style="color:red;margin:0%">Todos los campos son obligatorios.</p>
-                        <button type="button" id="register" v-on:click="signup">Registrarse</button>
-                    </form>
+                            <p v-show="incompleto==true" style="color:red;margin:0%">Todos los campos son obligatorios.</p>
+                            <button type="button" id="register" v-on:click="resgistrationAccount">Abrir cuenta</button>
+                        </form>
 
+                    </div>
+                    <div class="contenedor-img-form">
+                        <img src="/web/img/registro-usuario.jpg">
+                    </div>
                 </div>
-                <div class="contenedor-img-form">
-                    <img src="/web/img/registro-usuario.jpg">
+
+
+            </main>
+
+
+            <footer>
+                <div class="logo-copyright">
+                    <img src="img/circulo.png" alt="BCABA" width="70%">
+                    <p>Copyright ® 2022.</p>
                 </div>
-            </div>
-        </main>
+
+                <div class="logos">
+                    <!-- <p style="color: white;">Nuestras redes</p> -->
+                    <a href="http://www.facebook.com" target="blank_"> <img class="logo-redes" src="img/facebook.png" alt="Facebook"></a>
+                    <a href="http://www.instagram.com" target="blank_"><img class="logo-redes" src="img/instagram.png" alt="Instagram"></a>
+                    <a href="http://www.twitter.com" target="blank_"><img class="logo-redes" src="img/twitter.png" alt="twitter"></a>
+                </div>
+            </footer>
+        </div>
+        <template>
+        <transition name="fade">
+            <section class="modal" v-show="modalAccount==true">
+                <div class="contenedor-modal">
+                    <h2>Elegí tipo de cuenta</h2>
+                    <div class="modal-info">
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-wallet" width="32" height="32" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M17 8v-3a1 1 0 0 0 -1 -1h-10a2 2 0 0 0 0 4h12a1 1 0 0 1 1 1v3m0 4v3a1 1 0 0 1 -1 1h-12a2 2 0 0 1 -2 -2v-12" />
+                                <path d="M20 12v4h-4a2 2 0 0 1 0 -4h4" />
+                            </svg>
+                            <select id="accountType" v-model="accountType">
+                                <option :value="'AHORRO'">Cuenta ahorro</option>
+                                <option :value="'CORRIENTE'">Cuenta corriente</option>
+                            </select>
+                        </div>
+                        <div class="buttons">
+                                <button type="button" :disabled='accountType=="" '   @click="signup" :class="{'disabled-input': accountType=='','button-cuenta': accountType!='' } ">Ingresar</button>
+                                <button type="button " class="button-close " @click="close()">Volver</button>
+                         </div>
+                        </div>
+                    </div>
+            </section>
+        </transition>
+            </template>
+
     </div>
-
-    <footer>
-        <div class="logo-copyright">
-            <img src="img/circulo.png" alt="BCABA" width="70%">
-            <p>Copyright ® 2022.</p>
-        </div>
-
-        <div class="logos">
-            <!-- <p style="color: white;">Nuestras redes</p> -->
-            <a href="http://www.facebook.com" target="blank_"> <img class="logo-redes" src="img/facebook.png" alt="Facebook"></a>
-            <a href="http://www.instagram.com" target="blank_"><img class="logo-redes" src="img/instagram.png" alt="Instagram"></a>
-            <a href="http://www.twitter.com" target="blank_"><img class="logo-redes" src="img/twitter.png" alt="twitter"></a>
-        </div>
-    </footer>
-
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="script/register.js"></script>

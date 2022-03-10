@@ -57,68 +57,67 @@
                 <div v-if="account.balance!=0">
                     <div class="contenedor-button">
                         <div>
-                            <button class="prop" type="button" @click="selectProp">Cuenta propia</button>
+                            <button :disabled="accounts.length==1" class=" prop " type="button " @click="selectProp ">Cuenta propia</button>
                         </div>
                         <div>
-                            <button class="terc" @click="selectOther" type="button">Nuevo destinatario</button>
+                            <button class="terc " @click="selectOther " type="button ">Nuevo destinatario</button>
                         </div>
                     </div>
+
                     <template>
-                
-                    <div class="contenedor-numero" v-show="propia=='true'">
-                        <div>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-telegram" width="25" height="25" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                <path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4" />
-                            </svg>
-
-
-                            <select id=" number" v-model="form.destino">
-                            <option  v-for="account in accounts " v-if="account.number!=numberAccount&&account.activate==true" :value='account.number'>{{account.number}}</option>
-                            </select>
-                        </div>
-                    </div>
-                
+                            <div class="contenedor-numero " v-show="propia=='true' ">
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg " class="icon icon-tabler icon-tabler-brand-telegram " width="25 " height="25 " viewBox="0 0 24 24 " stroke-width="1.5 " stroke="#2c3e50 " fill="none " stroke-linecap="round
+                                        " stroke-linejoin="round ">
+                                    <path stroke="none " d="M0 0h24v24H0z " fill="none "/>
+                                    <path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4 " />
+                                    </svg>               
+                                    <select id=" number " v-model="form.destino ">
+                                    <option  v-for="account in accounts " v-if="account.number!=numberAccount&&account.activate==true " :value='account.number'>{{account.number}}</option>
+                                    </select>
+                                </div>                          
+                            </div>           
                     </template>
 
                     <template>
-                    <div class="contenedor-numero" v-show="propia=='false'">
+                    <div class="contenedor-numero " v-show="propia=='false' ">
                         <div>
                             <svg xmlns=" http://www.w3.org/2000/svg " class="icon icon-tabler icon-tabler-brand-telegram " width="25 " height="44 " viewBox="0 0 24 24 " stroke-width="1.5 " stroke="#2c3e50 " fill="none " stroke-linecap="round
-                        " stroke-linejoin="round ">
+                                " stroke-linejoin="round ">
                                 <path stroke="none " d="M0 0h24v24H0z " fill="none "/>
                                 <path d="M15 10l-4 4l6 6l4 -16l-18 7l4 2l2 6l3 -4 " />
                             </svg>
-                            <input v-model="form.destino" id="destino " type="text " placeholder="N° Cuenta " />
+                            <input v-model="form.destino " id="destino " type="text " placeholder="N° Cuenta " />
                         </div>
                     </div>
                     </template>
 
                     <template>
                     <form>
-                        <div class="form-inputs " v-show="form.destino!=''">
+                        <div class="form-inputs " v-show="form.destino!='' ">
                             <div>
                                 <svg xmlns="http://www.w3.org/2000/svg " class="icon icon-tabler icon-tabler-coin " width="30 " height="30 " viewBox="0 0 24 24 " stroke-width="1.5 " stroke="#2c3e50 " fill="none " stroke-linecap="round
-                        " stroke-linejoin="round ">
+                                " stroke-linejoin="round ">
                                 <path stroke="none " d="M0 0h24v24H0z " fill="none "/>
                                 <circle cx="12 " cy="12 " r="9 " />
                                 <path d="M14.8 9a2 2 0 0 0 -1.8 -1h-2a2 2 0 0 0 0 4h2a2 2 0 0 1 0 4h-2a2 2 0 0 1 -1.8 -1 " />
                                 <path d="M12 6v2m0 8v2 " />
                             </svg>
-                                <input v-model="form.monto" id="amount " type="number " placeholder="Monto " style="width:7rem; " />
+                                <input v-model="form.monto " id="amount " type="number " placeholder="Monto " style="width:7rem; " />
                             </div>
                             <div>
                                 <svg xmlns="http://www.w3.org/2000/svg " class="icon icon-tabler icon-tabler-pencil " width="30 " height="30 " viewBox="0 0 24 24 " stroke-width="1.5 " stroke="#2c3e50 " fill="none " stroke-linecap="round
-                        " stroke-linejoin="round ">
+                                " stroke-linejoin="round ">
                                 <path stroke="none " d="M0 0h24v24H0z " fill="none "/>
                                 <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4 " />
                                 <line x1="13.5 " y1="6.5 " x2="17.5 " y2="10.5 " />
                             </svg>
-                                <input v-model="form.description" id="description " type="text " placeholder="Concepto " />
+                                <input v-model="form.description " id="description " type="text " placeholder="Concepto " />
                             </div>
                         </div>
-                        <div v-show="form.destino!=''&&propia!=''" class="contenedor-t">
-                        <button  :disabled="form.destino==''||form.monto==0||form.description=='' " :class="{'transfer-disabled': form.destino==''||form.monto!=0||form.description!=''  ,'button-transfer': form.destino!=''&&form.monto!=0&&form.description!='' } " type="button" @click="transfer ">Transferir</button>
+                        <div v-show="form.destino!='' &&propia!='' " class="contenedor-t ">
+                        <button  :disabled="form.destino=='' ||form.monto==0||form.description=='' " :class="{ 'transfer-disabled': form.destino=='' ||form.monto!=0||form.description!='' , 'button-transfer': form.destino!='' &&form.monto!=0&&form.description!=''
+                                } " type="button " @click="transfer">Transferir</button>
                         </div>
                 
                     </form>
@@ -126,20 +125,17 @@
                 </div>
                 <div v-else>
                     <p>No cuenta con saldo para esta operacion.</p>
-                    <a href="/web/accounts.html">Volver a cuentas</button>
+                    <a href="/web/accounts.html ">Volver a cuentas</button>
                 </div>
             </div>
-            <div class="contenedor-operaciones">
-                <p style="font-weight: bold; color: #072146; "> <svg style="margin-right:1rem ;" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="30" height="30" viewBox="0 0 24 24" stroke-width="1.5" stroke="#072146" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                <circle cx="12" cy="7" r="4" />
-                <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
-                    </svg> cliente </p>
-                <a href="/web/service-payments.html">Pagos </a>
-                    <a href="#/">Resumenes de Tarjeta</a>
-                    <a href="#/">Operaciones</a>
-                    <a href="#/">Baja</a>
-                    <a href="#/">Comparar comisiones</a>
+        
+    
+            <div class="contenedor-operaciones ">
+                <a href="/web/service-payments.html ">Pagos</a>
+                    <a href="#/ ">Resumenes de Tarjeta</a>
+                    <a href="#/ ">Operaciones</a>
+                    <a href="#/ ">Baja</a>
+                    <a href="#/ ">Comparar comisiones</a>
                 </div>
         </main>
 

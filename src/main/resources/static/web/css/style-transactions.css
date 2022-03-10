@@ -2,8 +2,8 @@
         display: flex;
         justify-content: space-between;
         padding: 5rem;
-        padding-left: 11rem;
-        padding-right: 11rem;
+        padding-left: 9rem;
+        padding-right: 9rem;
         height: auto;
         background-color: rgb(221, 226, 230);
     }

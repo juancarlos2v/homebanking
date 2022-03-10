@@ -15,7 +15,8 @@ let app = new Vue({
         cuota: 0,
         errorRequest: false,
         modError: false,
-        messageError: ""
+        messageError: "",
+        loanCheck: false
 
     },
     mounted() {
@@ -79,8 +80,11 @@ let app = new Vue({
         loanSubmit() {
             axios.post('/api/loans', { id: this.idPrestamo, amount: this.monto, payments: this.payments, account: this.numero, amountFinal: this.pago })
                 .then(response => {
-                    console.log('prestamo aprobado');
-                    window.location.href = "/web/accounts.html";
+                    this.mod = false;
+                    this.loanCheck = true;
+                    setTimeout(function() {
+                        window.location.href = "/web/accounts.html";
+                    }, 3500)
                 })
                 .catch(error => {
                     console.log(error.response);

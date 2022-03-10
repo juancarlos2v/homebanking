@@ -2,25 +2,50 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style-home.css">
+    <link rel="stylesheet" href="css/style-accounts.css">
+    <link rel="stylesheet" href="css/admin-index.css">
     <title>Document</title>
 </head>
 
 <body>
     <div id="app">
+        <header>
+            <div class="cabecera-index">
+                <div class="logo-continental">
+                    <img src="img/circulo.png" alt="logo_continental">
+                    <h1>Mindhub</h1>
+                </div>
+
+            </div>
+        </header>
         <main>
 
-            <form>
+            <form class="form-index">
                 <label for="user">Usuario</label>
                 <input type="mail" class="form-control" id="user" v-model="user">
                 <label for="password">Clave digital</label>
                 <input type="password" class="form-control" id="password" v-model="password">
-                <button class="bton-login" type="button" v-on:click="login"> Ingresar</button>
+                <button style="background-color: #072146;color: white;margin-top: 1rem;border: none;" type="button" v-on:click="login"> Ingresar</button>
             </form>
 
         </main>
+        <footer>
+            <div class="logo-copyright">
+                <img src="img/circulo.png" alt="BCABA" width="70%">
+                <p>Copyright ® 2022.</p>
+            </div>
+
+            <div class="logos">
+
+                <!-- <p style="color: white;">Nuestras redes</p> -->
+
+                <a href="http://www.facebook.com" target="blank_"> <img class="logo-redes" src="img/facebook.png" alt="Facebook"></a>
+                <a href="http://www.instagram.com" target="blank_"><img class="logo-redes" src="img/instagram.png" alt="Instagram"></a>
+                <a href="http://www.twitter.com" target="blank_"><img class="logo-redes" src="img/twitter.png" alt="twitter"></a>
+            </div>
+        </footer>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

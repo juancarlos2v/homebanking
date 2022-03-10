@@ -1,89 +1,116 @@
-main h1 {
-    background-color: transparent;
-    color: #072146;
-}
-
-main {
-    margin-top: 3rem;
-    margin-left: 7rem;
-    margin-right: 0rem;
-    margin-bottom: 3rem;
-}
-
-
-/* FORMULARIO */
-
-form {
-    height: auto;
-}
-
-form>div {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 1rem;
-}
-
-.contenedor {
-    display: flex;
-    justify-content: space-between;
-}
-
-.contenedor-form {
-    width: 40%;
-}
-
-#register {
-    background-color: #1464a5;
-    color: white;
-    border: none;
-    margin-top: 0.5rem;
-    padding: 0.5rem;
-}
-
-.logo-user {
-    display: none;
-}
-
-
-/* IMAGEN FORMULARIO */
-
-.contenedor-img-form {
-    display: flex;
-    align-items: flex-end;
-    margin-left: 4rem;
-    width: 50%;
-    overflow: hidden;
-}
-
-@media screen and (max-width:800px) {
-    main {
-        margin: 2rem;
-        margin-top: 3rem;
-        margin-bottom: 3rem;
-        padding: 0;
-    }
-    .cabecera-index {
-        padding: 1rem;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-    }
-    .cabecera-index h3 {
-        display: none;
-    }
-    .logo-user {
-        display: flex;
-        height: 3rem;
-    }
-    .contenedor-img-form {
-        display: none;
-    }
-    .contenedor-form {
-        width: 100%;
-        padding: 0;
-    }
-    input {
-        margin-right: 1rem;
-    }
-}
+        main h1 {
+            background-color: transparent;
+            color: #072146;
+        }
+        
+        main {
+            margin-top: 3rem;
+            margin-left: 7rem;
+            margin-right: 0rem;
+            margin-bottom: 3rem;
+        }
+        /* FORMULARIO */
+        
+        form {
+            height: auto;
+        }
+        
+        form>div {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+        }
+        
+        .contenedor {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .contenedor-form {
+            width: 40%;
+        }
+        
+        #register {
+            background-color: #1464a5;
+            color: white;
+            border: none;
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+        }
+        
+        .logo-user {
+            display: none;
+        }
+        /* IMAGEN FORMULARIO */
+        
+        .contenedor-img-form {
+            display: flex;
+            align-items: flex-end;
+            margin-left: 4rem;
+            width: 50%;
+            overflow: hidden;
+        }
+        /**MODAL**/
+        
+        .desenfocar {
+            -webkit-filter: blur(2px);
+            -moz-filter: blur(2px);
+            -o-filter: blur(2px);
+            -ms-filter: blur(2px);
+            filter: blur(2px);
+        }
+        
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            /* background-color: #1464a5; */
+            display: flex;
+        }
+        
+        .contenedor-modal {
+            margin: auto;
+            width: 90%;
+            max-width: 30rem;
+            max-height: 90%;
+            background-color: white;
+            border-radius: 0.5rem 1rem;
+            border: 0.2rem solid rgba(0, 0, 0, 0.61);
+            padding: 1rem;
+        }
+        /***/
+        
+        @media screen and (max-width: 800px) {
+            main {
+                margin: 2rem;
+                margin-top: 3rem;
+                margin-bottom: 3rem;
+                padding: 0;
+            }
+            .cabecera-index {
+                padding: 1rem;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .cabecera-index h3 {
+                display: none;
+            }
+            .logo-user {
+                display: flex;
+                height: 3rem;
+            }
+            .contenedor-img-form {
+                display: none;
+            }
+            .contenedor-form {
+                width: 100%;
+                padding: 0;
+            }
+            input {
+                margin-right: 1rem;
+            }
+        }

@@ -1,6 +1,7 @@
 let app = new Vue({
     el: '#app',
     data: {
+        cliente: "",
         numberAccount: "",
         account: [],
         accounts: [],
@@ -21,9 +22,18 @@ let app = new Vue({
         this.numberAccount = urlParams.get('account');
         console.log(this.numberAccount);
 
+        this.cliente = sessionStorage.nombre;
+
         axios.get('/api/clients/current/accounts', { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
             .then(response => {
-                this.accounts = response.data;
+                console.log(response.data);
+                response.data.forEach(account => {
+                    if (account.activate == true) {
+                        this.accounts.push(account)
+                        console.log(account);
+                    }
+
+                });
                 this.accounts.forEach(account => {
                     if (account.number == this.numberAccount) {
                         this.account = account;
@@ -56,7 +66,10 @@ let app = new Vue({
         transfer() {
             axios.post('/api/transactions', `amount=${this.form.monto}&description=${this.form.description}&numberAccount=${this.numberAccount}&numberAccountDestiny=${this.form.destino}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
                 .then(response => {
-                    window.location.href = "/web/accounts.html";
+                    setTimeout(function() {
+                        window.location.href = "/web/accounts.html";
+                    }, 3500)
+
                 })
                 .catch(error => {
                     console.log(error.response.data);

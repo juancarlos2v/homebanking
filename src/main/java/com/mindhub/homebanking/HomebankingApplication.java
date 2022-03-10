@@ -107,29 +107,7 @@ public class HomebankingApplication {
             Client admin = new Client("mindhub@admin.com", passwordEncoder().encode("admin"));
             clientRepository.save(admin);
         };
-
     }
-
-    @Service
-    public class PDFGeneratorService{
-        public void export(HttpServletResponse response) throws IOException {
-            Document document=new Document(PageSize.A4);
-            PdfWriter.getInstance(document, response.getOutputStream());
-
-            document.open();
-            Font fontTitle= FontFactory.getFont(FontFactory.HELVETICA);
-            fontTitle.setSize(18);
-
-            Paragraph paragraph=new Paragraph("This is PDF", fontTitle);
-
-            document.add(paragraph);
-            document.close();
-
-
-        }
-    }
-
-
 }
 
 

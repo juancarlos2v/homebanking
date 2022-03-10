@@ -121,7 +121,7 @@
                                     <div>
                                         <label for="account ">Cuenta</label>
                                         <select id="account " v-model="numero ">
-                                <option v-for="cuenta in cuentas " :value="cuenta.number ">{{cuenta.number}} </option>
+                                <option v-for="cuenta in cuentas" v-if="cuenta.activate==true" :value="cuenta.number">{{cuenta.number}} </option>
                                 </select>
                                     </div>
                                 </form>
@@ -196,6 +196,16 @@
                 </section>
             </transition>
         </template>
+        <template>
+            <transition name="fade">
+                <section class="modal " v-show="loanCheck==true ">
+                    <div class="contenedor-modal ">
+                        <h4>Prestamo aprobado</h4>
+                        <p>Redireccionando a cuentas...</p>
+                    </div>
+                </section>
+            </transition>
+        </template>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js "></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js "></script>
@@ -205,5 +215,3 @@
 </body>
 
 </html>
-
-<!-- <div id="png " :class="{ 'png-hipoteca':loan.name=='Hipotecario' , 'png-personal':loan.name=='Personal' , 'png-auto':loan.name=='Automotriz' } "></div> -->

@@ -135,7 +135,7 @@
                                     </div>
                                     <div>
                                         <label for="cvv ">CVV</label>
-                                        <input style="margin-left: 0.5rem;width: 4rem;" id="cvv " v-model="payment.cvv " type="password " />
+                                        <input type="number" style="margin-left: 0.5rem;width: 4rem;" id="cvv " v-model="payment.cvv " type="password " />
                                         <div style="margin-left: 3rem; width: 4rem;">
                                             <button type="button " id="button-pay" :disabled="payment.cardNumber==0||payment.cvv<99" :class="{'pay-disabled': payment.cardNumber==0||payment.cvv<99  ,'button-pay': payment.cardNumber!=0&&payment.cvv>99 } " @click="requestPay">Pagar</button>
                                         </div>

@@ -7,19 +7,26 @@ let app = new Vue({
             email: "",
             password: ""
         },
-        incompleto: false
+        accountType: "",
+        incompleto: false,
+        modalAccount: false
     },
     methods: {
         login() {
-            //console.log(this.registro);
             axios.post('/api/login', `email=${this.registro.email}&password=${this.registro.password}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
                 .then(response => {
-                    console.log('signed in!!!');
                     window.location.href = "/web/accounts.html";
                 })
                 .catch(error => {
                     console.log(error)
                 })
+        },
+        resgistrationAccount() {
+            this.modalAccount = true;
+            console.log("entro");
+        },
+        close() {
+            this.modalAccount = false;
         },
         signup() {
             axios.post('/api/clients', `firstName=${this.registro.firstName}&lastName=${this.registro.lastName}&email=${this.registro.email}&password=${this.registro.password}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
@@ -30,12 +37,21 @@ let app = new Vue({
                 .catch(error => {
                     console.log(error)
                     this.incompleto = true;
-                    this.registro.firstName = "";
-                    this.registro.lastName = "";
-                    this.registro.email = "";
-                    this.registro.password = "";
+                    // this.registro.firstName = "";
+                    // this.registro.lastName = "";
+                    // this.registro.email = "";
+                    // this.registro.password = "";
                 });
-        }
+            axios.post('/api/clients/current/accounts', `accountType=${this.accountType}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
+                .then(response => {
+                    console.log('cuenta creada');
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+
+            window.location.href = "/web/accounts.html";
+        },
     }
 })
 

@@ -3,6 +3,7 @@ package com.mindhub.homebanking.controllers;
 import com.mindhub.homebanking.dtos.*;
 import com.mindhub.homebanking.models.*;
 import com.mindhub.homebanking.repositories.*;
+import com.mindhub.homebanking.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,35 +24,33 @@ import static java.util.stream.Collectors.toList;
 public class TransactionController {
 
     @Autowired
-    ClientRepository clientRepository;
+    TransactionService transactionService;
 
     @Autowired
-    AccountRepository accountRepository;
+    ClientService clientService;
 
     @Autowired
-    TransactionRepository transactionRepository;
+    AccountService accountService;
 
     @Autowired
-    CardRepository cardRepository;
+    CardService cardService;
 
     @Autowired
-    ExpensesRepository expensesRepository;
+    ExpensesService expensesService;
 
     @GetMapping("/api/transactions")
     public List<TransactionDTO> getTransactions() {
-        return transactionRepository.findAll()
-                .stream().map(transaction -> new TransactionDTO(transaction)).collect(Collectors.toList());
+        return transactionService.getTransactions();
     }
-
 
     @Transactional
     @PostMapping("/api/transactions")
     public ResponseEntity<Object> transaction(
             Authentication authentication, @RequestParam double amount, @RequestParam String description,
             @RequestParam String numberAccount, @RequestParam String numberAccountDestiny) {
-        Client client = clientRepository.findByEmail(authentication.getName());
-        Account accountOrigin = accountRepository.findByNumber(numberAccount);
-        Account accountDestiny = accountRepository.findByNumber(numberAccountDestiny);
+        Client client = clientService.findClientByEmail(authentication.getName());
+        Account accountOrigin = accountService.findByNumber(numberAccount);
+        Account accountDestiny = accountService.findByNumber(numberAccountDestiny);
 
         if (amount == 0 || description.isEmpty() || numberAccount.isEmpty() || numberAccountDestiny.isEmpty()) {
             return new ResponseEntity<>("403 FALTAN DATOS.", HttpStatus.FORBIDDEN);
@@ -88,11 +87,11 @@ public class TransactionController {
 
         double restAmount = accountOrigin.getBalance() - amount;
         accountOrigin.setBalance(restAmount);
-        transactionRepository.save(new Transaction(TransactionType.DEBITO, amount, description, LocalDateTime.now(), accountOrigin, true));
+        transactionService.saveTransacion(new Transaction(TransactionType.DEBITO, amount, description, LocalDateTime.now(), accountOrigin, true));
 
         double addAmount = accountDestiny.getBalance() + amount;
         accountDestiny.setBalance(addAmount);
-        transactionRepository.save(new Transaction(TransactionType.CREDITO, amount, accountOrigin.getNumber() + " " + description, LocalDateTime.now(), accountDestiny, true));
+        transactionService.saveTransacion(new Transaction(TransactionType.CREDITO, amount, accountOrigin.getNumber() + " " + description, LocalDateTime.now(), accountDestiny, true));
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
@@ -100,7 +99,7 @@ public class TransactionController {
     @Transactional
     @PostMapping("/api/payments")
     public ResponseEntity<Object> servicePayment(@RequestBody CardPaymentDTO payment) {
-        Card card = cardRepository.findByNumber(payment.getNumberCard());
+        Card card = cardService.findByNumber(payment.getNumberCard());
         Account account = card.getAccount();
         LocalDate date = LocalDate.now();
 
@@ -127,12 +126,12 @@ public class TransactionController {
 
             double balanceFinal = account.getBalance() - payment.getAmount();
             account.setBalance(balanceFinal);
-            transactionRepository.save(new Transaction(TransactionType.DEBITO, payment.getAmount(), payment.getDescription(), LocalDateTime.now(), account, true));
+            transactionService.saveTransacion(new Transaction(TransactionType.DEBITO, payment.getAmount(), payment.getDescription(), LocalDateTime.now(), account, true));
             return new ResponseEntity<>("Pago realizado", HttpStatus.CREATED);
         }
 
 
-        expensesRepository.save(new CreditExpenses(payment.getDescription(), payment.getAmount(), LocalDateTime.now(), card, card.getActivate()));
+        expensesService.saveExpenses(new CreditExpenses(payment.getDescription(), payment.getAmount(), LocalDateTime.now(), card, card.getActivate()));
         return new ResponseEntity<>("Pago realizado", HttpStatus.CREATED);
     }
 }

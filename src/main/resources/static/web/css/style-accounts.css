@@ -335,6 +335,7 @@ h5 {
     }
     .enlaces-header a {
         color: white;
+        margin: 0;
     }
     .body-accounts {
         display: flex;
@@ -369,7 +370,7 @@ h5 {
     }
     .modal-baja {
         width: 18rem;
-        height: 19rem;
+        height: auto;
     }
     .contenedor-baja {
         height: 10rem;

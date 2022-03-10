@@ -20,8 +20,8 @@
 
 .contenedor-input {
     display: flex;
-    flex-direction: row;
-    align-items: flex-end;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .contenedor-input div {
@@ -57,6 +57,45 @@
     background-color: #1464a5;
 }
 
+.contenedor-templates {
+    display: flex;
+    margin-top: 1.5rem;
+}
+
+.contenedor-templates button {
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    margin-right: 2rem;
+}
+
+.template img {
+    width: 25%;
+}
+
+.template {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 8rem;
+    height: 5rem;
+    border: 0.1rem solid rgba(77, 75, 75, 0.651);
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    box-shadow: -1px 12px 8px 0px rgb(0 0 0 / 70%);
+}
+
+.contenedor-create {
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.border {
+    border: 0.6rem solid #1464a5;
+    background: #1464a5;
+}
+
 @media screen and (max-width:800px) {
     .contenedor-img-form {
         display: none;
@@ -67,4 +106,24 @@
     .contenedor-form {
         width: 100%
     }
+    .template {
+        width: 6rem;
+        height: 4rem;
+    }
+    .contenedor-modal {
+        width: 50%;
+        justify-content: center;
+    }
+}
+
+.background-gold {
+    background-image: url(/web/img/card-gold.png);
+}
+
+.background-silver {
+    background-image: url(/web/img/card-silver.png);
+}
+
+.background-titanium {
+    background-image: url(/web/img/card-titanium.jpg);
 }

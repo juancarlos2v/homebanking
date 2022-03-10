@@ -7,14 +7,27 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/style-home.css">
     <link rel="stylesheet" href="css/style-accounts.css">
+    <link rel="stylesheet" href="css/admin-index.css">
+
+
     <title>Prestamos|ADM</title>
 </head>
 
 <body>
-    <main>
+    <header>
+        <div class="cabecera-index">
+            <div class="logo-continental">
+                <img src="img/circulo.png" alt="logo_continental">
+                <h1>Mindhub</h1>
+            </div>
+
+        </div>
+    </header>
+    <main style="margin: 1rem;">
         <div id="app">
+
             <h1>Crear prestamos</h1>
-            <form>
+            <form class="form-loan">
 
                 <div>
                     <label for="name ">Nombre del prestamo</label>
@@ -24,11 +37,10 @@
                     <label for="amount ">Monto maximo</label>
                     <input v-model="form.monto" type="number" />
                 </div>
-                <div>
+                <div style="display: flex;align-items: center;margin-top: 1rem;">
                     <label for="payment">Cuotas</label>
-                    <p>ingresar cada cuota separado con comas</p>
+                    <p>(Ingresar cada cuota separado con comas)</p>
                     <input v-model="form.cuotasInput" type="text" />
-
                 </div>
 
                 <div>
@@ -36,14 +48,28 @@
                     <input v-model="form.rate" type="number" />
                 </div>
 
-                <button type="button" @click="creationLoan">Crear</button>
+                <button style="margin-top: 1rem;" type="button" @click="creationLoan">Crear</button>
+
+                <button style="margin-top: 1rem;" type="button" v-on:click="signout">Salir</button>
             </form>
-            <button type="button" v-on:click="signout">Salir</button>
+
         </div>
 
     </main>
     <footer>
+        <div class="logo-copyright">
+            <img src="img/circulo.png" alt="BCABA" width="70%">
+            <p>Copyright ® 2022.</p>
+        </div>
 
+        <div class="logos">
+
+            <!-- <p style="color: white;">Nuestras redes</p> -->
+
+            <a href="http://www.facebook.com" target="blank_"> <img class="logo-redes" src="img/facebook.png" alt="Facebook"></a>
+            <a href="http://www.instagram.com" target="blank_"><img class="logo-redes" src="img/instagram.png" alt="Instagram"></a>
+            <a href="http://www.twitter.com" target="blank_"><img class="logo-redes" src="img/twitter.png" alt="twitter"></a>
+        </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

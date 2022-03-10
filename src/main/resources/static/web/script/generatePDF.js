@@ -1,5 +1,15 @@
-var nombre = 'juan';
-var edad = 25;
+// let nombre;
+
+// let client: {};
+// axios.get('/api/clients/current')
+//     .then(response => {
+//         client = response;
+//     })
+
+
+// console.log(client);
+
+
 
 function generatepdf() {
     console.log('pdf');
@@ -29,11 +39,11 @@ var props = {
         }
     },
     business: {
-        name: nombre,
+        name: "nombre",
         address: "Albania, Tirane ish-Dogana, Durres 2001",
         phone: "(+355) 069 11 11 111",
-        email: "email@example.com",
-        email_1: "info@example.al",
+        email: "email",
+        email_1: "-----",
         website: "www.example.al",
     },
     contact: {

@@ -83,6 +83,9 @@ let app = new Vue({
                     console.log(error);
                 })
         },
+        goLoans() {
+            window.location.href = "/web/loan-application.html"
+        },
         signout() {
             console.log("salir");
             axios.post('/api/logout').then(response => {

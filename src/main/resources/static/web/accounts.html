@@ -105,7 +105,7 @@
 
                     <div v-else style="margin-top: 3rem;;">
                         <h5 style="margin-bottom: 1rem">Solicita un prestamo</h5>
-                        <button type="button" style="border: none; background-color: #1871b9; color:white;padding: 0.5rem;">Ir a prestamos</button>
+                        <button type="button" @click="goLoans" style="border: none; background-color: #1871b9; color:white;padding: 0.5rem;">Ir a prestamos</button>
                     </div>
 
                 </div>
@@ -206,7 +206,7 @@
                 <section class="modal " v-show="modalBaja==true">
                     <div class="contenedor-modal modal-baja">
                         <h4>Solicitud de baja para cuenta {{accountDelete.number}} </h4>
-                       
+                    
                         <transition name="fade">
                             <div v-show="accountDelete.balance>0">
                              

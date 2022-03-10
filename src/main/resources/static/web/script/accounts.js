@@ -25,7 +25,7 @@ let app = new Vue({
                 this.name = this.cliente.firstName;
                 console.log(this.cliente);
                 console.log(this.name);
-                sessionStorage.nombre(this.name);
+                // sessionStorage.nombre(this.name);
             })
             .catch(error => {
                 console.log(error)

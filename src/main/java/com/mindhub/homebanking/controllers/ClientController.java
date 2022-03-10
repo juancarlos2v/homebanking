@@ -1,6 +1,7 @@
 package com.mindhub.homebanking.controllers;
 
 import com.mindhub.homebanking.dtos.ClientDTO;
+import com.mindhub.homebanking.models.AccountType;
 import com.mindhub.homebanking.services.AccountService;
 import com.mindhub.homebanking.services.ClientService;
 import com.mindhub.homebanking.services.implementation.ClientServiceImplementation;
@@ -47,7 +48,7 @@ public class ClientController {
     @PostMapping("/api/clients")
     public ResponseEntity<Object> register(
             @RequestParam String firstName, @RequestParam String lastName,
-            @RequestParam String email, @RequestParam String password) {
+            @RequestParam String email, @RequestParam String password, @RequestParam String accountType) {
 
         if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || password.isEmpty()) {
             return new ResponseEntity<>("Datos incompletos.", HttpStatus.FORBIDDEN);
@@ -63,7 +64,7 @@ public class ClientController {
         int number = CardUtils.numberRandom(99999999, 11111111);
         String numberAccount = CardUtils.numberToString(number);
 
-        accountService.saveAccount(new Account("VIN-" + numberAccount, LocalDateTime.now(), 0.00, client));
+        accountService.saveAccount(new Account("VIN-" + numberAccount, LocalDateTime.now(), 0.00, AccountType.valueOf(accountType), true,client));
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

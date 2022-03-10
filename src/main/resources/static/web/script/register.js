@@ -29,7 +29,7 @@ let app = new Vue({
             this.modalAccount = false;
         },
         signup() {
-            axios.post('/api/clients', `firstName=${this.registro.firstName}&lastName=${this.registro.lastName}&email=${this.registro.email}&password=${this.registro.password}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
+            axios.post('/api/clients', `firstName=${this.registro.firstName}&lastName=${this.registro.lastName}&email=${this.registro.email}&password=${this.registro.password}&accountType=${this.accountType}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
                 .then(response => {
                     console.log('registered');
                     this.login();
@@ -37,20 +37,7 @@ let app = new Vue({
                 .catch(error => {
                     console.log(error)
                     this.incompleto = true;
-                    // this.registro.firstName = "";
-                    // this.registro.lastName = "";
-                    // this.registro.email = "";
-                    // this.registro.password = "";
                 });
-            axios.post('/api/clients/current/accounts', `accountType=${this.accountType}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
-                .then(response => {
-                    console.log('cuenta creada');
-                })
-                .catch(error => {
-                    console.log(error)
-                })
-
-            window.location.href = "/web/accounts.html";
         },
     }
 })

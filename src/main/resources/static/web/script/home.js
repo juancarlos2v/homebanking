@@ -1,43 +1,45 @@
 let app = new Vue({
-    el: '#app',
-    data: {
-        form: {
-            user: "",
-            pass: "",
-        },
-        clientes: [],
-        id: false,
-        formEstado: false,
-        error: false
+  el: "#app",
+  data: {
+    form: {
+      user: "",
+      pass: "",
     },
-    methods: {
-
-        login() {
-            axios.post('/api/login', `email=${this.form.user}&password=${this.form.pass}`, { headers: { 'content-type': 'application/x-www-form-urlencoded' } })
-                .then(response => {
-                    window.location.href = "/web/accounts.html";
-                })
-                .catch(error => {
-                    this.error = true;
-                    this.form.user = "";
-                    this.form.pass = "";
-                })
-        },
-        showForm() {
-            if (this.formEstado == false) {
-                this.formEstado = true;
-
-            } else if (this.formEstado == true) {
-                this.formEstado = false;
-            }
-            console.log(this.formEstado);
-        }
-    }
+    clientes: [],
+    id: false,
+    formEstado: false,
+    error: false,
+  },
+  methods: {
+    login() {
+      axios
+        .post(
+          "/api/login",
+          `email=${this.form.user}&password=${this.form.pass}`,
+          { headers: { "content-type": "application/x-www-form-urlencoded" } }
+        )
+        .then((response) => {
+          window.location.href = "/web/accounts.html";
+        })
+        .catch((error) => {
+          this.error = true;
+          this.form.user = "";
+          this.form.pass = "";
+        });
+    },
+    showForm() {
+      if (this.formEstado == false) {
+        this.formEstado = true;
+      } else if (this.formEstado == true) {
+        this.formEstado = false;
+      }
+      console.log(this.formEstado);
+    },
+  },
 });
 
-
-window.addEventListener("load", function() {
-    document.getElementById("onload").classList.toggle("loader2");
+window.addEventListener("load", function () {
+  document.getElementById("onload").classList.toggle("loader2");
 });
 sessionStorage.clear();
 

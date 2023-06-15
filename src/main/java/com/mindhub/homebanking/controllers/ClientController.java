@@ -35,12 +35,12 @@ public class ClientController {
     private AccountService accountService;
 
 
-    @GetMapping("api/clients")
+    @GetMapping("/api/clients")
     public List<ClientDTO> getClients() {
         return clientService.getClients();
     }
 
-    @RequestMapping("api/clients/{id}")
+    @RequestMapping("/api/clients/{id}")
     public ClientDTO getClient(@PathVariable Long id) {
         return clientService.getClient(id);
     }

@@ -23,9 +23,6 @@ import java.util.regex.Pattern;
 public class WebAuthentication extends GlobalAuthenticationConfigurerAdapter {
 
     @Autowired
-    PasswordEncoder passwordEncoder;
-
-    @Autowired
     ClientRepository clientRepository;
 
     @Autowired
@@ -47,5 +44,9 @@ public class WebAuthentication extends GlobalAuthenticationConfigurerAdapter {
                 throw new UsernameNotFoundException("Unknown user: " + inputName);
             }
         });
+    }
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 }

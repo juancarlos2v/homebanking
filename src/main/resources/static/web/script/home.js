@@ -25,8 +25,7 @@ let app = new Vue({
         .then((response) => {
           console.log(this.form.user);
           console.log(this.form.pass);
-          //window.location.href = "/accounts.html";
-          console.log(response.data);
+          window.location.href = "/web/accounts.html";
         })
         .catch((error) => {
           this.error = true;

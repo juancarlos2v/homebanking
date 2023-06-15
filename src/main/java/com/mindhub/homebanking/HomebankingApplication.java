@@ -9,10 +9,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.domain.Page;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 
 import javax.servlet.http.HttpServletResponse;
@@ -22,20 +26,16 @@ import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
-
 @SpringBootApplication
 public class HomebankingApplication {
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-    }
-
-    ;
 
     public static void main(String[] args) {
         SpringApplication.run(HomebankingApplication.class, args);
     }
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Bean
     public CommandLineRunner initData(ClientRepository clientRepository,
@@ -47,7 +47,7 @@ public class HomebankingApplication {
                                       ExpensesRepository expensesRepository) {
         return (args) -> {
             //CLIENT 1
-            Client mabel = new Client("Mabel", "Morel", "melba@mindhub.com", passwordEncoder().encode("mabel"));
+            Client mabel = new Client("Mabel", "Morel", "melba@mindhub.com", passwordEncoder.encode("mabel"));
             clientRepository.save(mabel);
 
             Account VIN001 = accountRepository.save(new Account("VIN00000001", LocalDateTime.now(), 50000.0, AccountType.CORRIENTE, true, mabel));
@@ -81,7 +81,7 @@ public class HomebankingApplication {
             cardRepository.save(new Card(mabel.getFirstName() + " " + mabel.getLastName(), CardType.DEBIT, CardColor.TITANIUM, "5603-2343-2345-6543", 342, LocalDate.now(), LocalDate.now().plusYears(5), mabel, true));
 
             //CLIENT 2
-            Client juan = new Client("Juan Carlos", "Vilcherrez", "juancarlos@fadu.com", passwordEncoder().encode("juancarlos"));
+            Client juan = new Client("Juan Carlos", "Vilcherrez", "juancarlos@fadu.com", passwordEncoder.encode("juancarlos"));
             clientRepository.save(juan);
 
             Account VIN003 = accountRepository.save(new Account("VIN00000003", LocalDateTime.now(), 50590.0, AccountType.CORRIENTE, true, juan));
@@ -104,7 +104,7 @@ public class HomebankingApplication {
 
             expensesRepository.save(new CreditExpenses("Tanque -Easy", 10000, LocalDateTime.now().plusDays(-15),card1,card1.getActivate() ));
             //ADMIN
-            Client admin = new Client("mindhub@admin.com", passwordEncoder().encode("admin"));
+            Client admin = new Client("mindhub@admin.com", passwordEncoder.encode("admin"));
             clientRepository.save(admin);
         };
     }

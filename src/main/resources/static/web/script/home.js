@@ -16,10 +16,17 @@ let app = new Vue({
         .post(
           "/api/login",
           `email=${this.form.user}&password=${this.form.pass}`,
-          { headers: { "content-type": "application/x-www-form-urlencoded" } }
+          {
+            headers: {
+              "content-type": "application/x-www-form-urlencoded",
+            },
+          }
         )
         .then((response) => {
-          window.location.href = "/web/accounts.html";
+          console.log(this.form.user);
+          console.log(this.form.pass);
+          //window.location.href = "/accounts.html";
+          console.log(response.data);
         })
         .catch((error) => {
           this.error = true;
@@ -27,6 +34,25 @@ let app = new Vue({
           this.form.pass = "";
         });
     },
+    //   const url = "http://localhost:8080/api/login";
+    //   const data = `email=${this.form.user}&password=${this.form.pass}`;
+    //   fetch(url, {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       Accept: "*/*",
+    //       Credentials: "include",
+    //     },
+    //     body: JSON.stringify(data),
+    //   })
+    //     .then((response) => response.json())
+    //     .then((data) => {
+    //       console.log("Respuesta:", data);
+    //     })
+    //     .catch((error) => {
+    //       console.error("Error:", error);
+    //     });
+    // },
     showForm() {
       if (this.formEstado == false) {
         this.formEstado = true;

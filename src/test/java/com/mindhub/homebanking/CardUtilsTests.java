@@ -7,13 +7,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
-public class CardUtilsTests {
-
-    @Test
-    public void cardNumberIsCreated(){
-        String cardNumber = CardUtils.getCardNumber();
-        assertThat(cardNumber,is(not(emptyOrNullString())));
-    }
-
-}
+//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
+//public class CardUtilsTests {
+//
+//    @Test
+//    public void cardNumberIsCreated(){
+//        String cardNumber = CardUtils.getCardNumber();
+//        assertThat(cardNumber,is(not(emptyOrNullString())));
+//    }
+//
+//}

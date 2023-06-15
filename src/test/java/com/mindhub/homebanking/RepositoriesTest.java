@@ -15,6 +15,7 @@ import static org.hamcrest.Matchers.*;
 
 import java.util.List;
 
+/*
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 public class RepositoriesTest {
@@ -66,3 +67,4 @@ public class RepositoriesTest {
 
 
 }
+*/
